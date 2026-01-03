@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valeria Valentina - Un Año de Amor Infinito</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Mrs+Saint+Delafield&family=Caveat:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --romance-red: #8e0e2f;
+            --soft-pink: #fdf0f4;
+            --antique-paper: #f9f4e8;
+            --rose-accent: #e28ca0;
+            --deep-purple: #3b0d2c;
+            --text-color: #3b0d2c;
+            --card-bg: rgba(249, 244, 232, 0.85);
+            --envelope-bg: white;
+            --body-bg: linear-gradient(135deg, #fce4ec 0%, #f8d7e3 50%, #f9f4e8 100%);
+        }
+
+        body.dark-mode {
+            --romance-red: #ff4d7d;
+            --soft-pink: #2d1a22;
+            --antique-paper: #1a1a1a;
+            --rose-accent: #5d2a37;
+            --deep-purple: #fdf0f4;
+            --text-color: #fdf0f4;
+            --card-bg: rgba(30, 15, 20, 0.95);
+            --envelope-bg: #3d1c26;
+            --body-bg: #12050a;
+        }
+
+        /* RESET & SCROLL OCULTO */
+        * {
+            box-sizing: border-box;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+        *::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--body-bg);
+            background-attachment: fixed;
+            font-family: 'Playfair Display', serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+            transition: background 0.5s ease;
+        }
+
+        /* ANIMACIONES */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(142, 14, 47, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(142, 14, 47, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(142, 14, 47, 0); }
+        }
+
+        /* CONTROLES FLOTANTES */
+        .floating-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 9999;
+        }
+
+        .btn-float {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--romance-red);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-float:hover { transform: scale(1.15) rotate(5deg); }
+        .btn-float.active { animation: pulse-red 2s infinite; }
+
+        /* NAVEGACIÓN */
+        .nav-menu {
+            position: sticky;
+            top: 0;
+            background: var(--card-bg);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 18px;
+            z-index: 1000;
+            border-bottom: 1px solid var(--rose-accent);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--romance-red);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            padding: 10px 18px;
+            border-radius: 25px;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .nav-link:hover { background: rgba(142, 14, 47, 0.05); }
+        .nav-link.active { color: white; background: var(--romance-red); border-color: var(--romance-red); }
+
+        /* CONTENEDOR PRINCIPAL */
+        .main-canvas {
+            width: 92%;
+            max-width: 900px;
+            margin: 40px auto;
+            background: var(--card-bg);
+            padding: clamp(40px, 10vw, 90px);
+            box-shadow: 0 15px 70px rgba(0, 0, 0, 0.15);
+            min-height: 80vh;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+        }
+
+        section { 
+            display: none; 
+            animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+        section.active { display: block; }
+
+        .title-name {
+            font-family: 'Mrs Saint Delafield', cursive;
+            font-size: clamp(75px, 15vw, 130px);
+            color: var(--romance-red);
+            text-align: center;
+            margin: 20px 0;
+            line-height: 0.8;
+        }
+
+        /* TEXTO EXTENDIDO Y FUENTE AJUSTADA */
+        .body-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px; /* Tamaño solicitado */
+            line-height: 2.3; /* Más espaciado para extender visualmente */
+            text-align: justify;
+            margin-bottom: 45px;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+
+        .highlight { color: var(--romance-red); font-weight: 600; border-bottom: 1px solid var(--rose-accent); }
+        
+        .handwritten {
+            font-family: 'Caveat', cursive;
+            font-size: 42px;
+            color: var(--rose-accent);
+            text-align: center;
+            display: block;
+            margin: 40px 0;
+            transform: rotate(-2deg);
+        }
+
+        /* GALERÍA */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border: 15px solid white;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.05) translateY(-10px) rotate(2deg);
+            z-index: 10;
+        }
+
+        /* CONTADOR */
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 60px 0;
+        }
+        .timer-box {
+            background: var(--romance-red);
+            color: white;
+            padding: 25px 15px;
+            border-radius: 15px;
+            min-width: 100px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(142, 14, 47, 0.3);
+            transition: 0.3s;
+        }
+        .timer-box:hover { transform: translateY(-5px); }
+        .timer-box span { display: block; font-size: 36px; font-weight: 700; font-family: 'Montserrat'; }
+        .timer-box label { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.9; }
+
+        /* CARTAS */
+        .envelope-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            margin-top: 60px;
+        }
+        .envelope {
+            background: var(--envelope-bg);
+            border: 1px solid var(--rose-accent);
+            padding: 45px 25px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .envelope::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 4px;
+            background: var(--romance-red);
+            transform: scaleX(0);
+            transition: 0.4s;
+        }
+        .envelope:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background: var(--soft-pink);
+        }
+        .envelope:hover::after { transform: scaleX(1); }
+        .envelope h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            color: var(--romance-red);
+            margin: 0;
+        }
+
+        /* MODAL DE CARTAS */
+        .letter-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 99999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(15px);
+        }
+        .letter-content {
+            background: var(--antique-paper);
+            width: 100%;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: clamp(30px, 8vw, 60px);
+            position: relative;
+            border-radius: 20px;
+            box-shadow: 0 0 60px rgba(0,0,0,0.5);
+            border: 1px solid var(--rose-accent);
+        }
+        .close-letter {
+            position: absolute;
+            top: 25px; right: 30px;
+            font-size: 45px;
+            cursor: pointer;
+            color: var(--romance-red);
+            line-height: 1;
+            transition: 0.3s;
+        }
+        .close-letter:hover { transform: rotate(90deg); }
+
+        footer {
+            text-align: center;
+            margin-top: 100px;
+            padding: 80px 20px;
+            border-top: 1px dashed var(--rose-accent);
+            font-family: 'Dancing Script';
+            font-size: 32px;
+            color: var(--romance-red);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 600px) {
+            .nav-menu { padding: 10px; }
+            .nav-link { font-size: 9px; padding: 8px 12px; }
+            .main-canvas { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-controls">
+        <button class="btn-float" onclick="toggleDarkMode()" id="modeBtn" title="Cambiar Modo">🌙</button>
+        <button class="btn-float" onclick="toggleMusic()" id="musicBtn" title="Reproducir Música">🎵</button>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://dl.dropboxusercontent.com/scl/fi/bz43xatwib7r6q5rr9ncf/Sebastian-Yatra-Cristina-Letra-LatinHype.mp3?rlkey=xrgscx3bz0xvyy5viwpgysdcb&raw=1" type="audio/mpeg">
+    </audio>
+
+    <nav class="nav-menu">
+        <a class="nav-link active" onclick="showSection('inicio')" id="nav-inicio">El Primer Año</a>
+        <a class="nav-link" onclick="showSection('ella')" id="nav-ella">Tú</a>
+        <a class="nav-link" onclick="showSection('nosotros')" id="nav-nosotros">Nosotros</a>
+        <a class="nav-link" onclick="showSection('actualidad')" id="nav-actualidad">Presente</a>
+        <a class="nav-link" onclick="showSection('futuro')" id="nav-futuro">Futuro</a>
+        <a class="nav-link" onclick="showSection('pensamientos')" id="nav-pensamientos">Cartas</a>
+    </nav>
+
+    <div class="main-canvas">
+        
+        <section id="inicio" class="active">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <div style="border: 1px solid var(--romance-red); display: inline-block; padding: 8px 30px; border-radius: 40px; font-size: 14px; letter-spacing: 4px; font-family: 'Montserrat';">7 DE ENERO DE 2026</div>
+                <h1 class="title-name">Valeria Valentina</h1>
+                <p style="letter-spacing: 10px; font-family: 'Montserrat'; font-size: 15px; opacity: 0.7; font-weight: 300;">JIMÉNEZ NAVA</p>
+            </div>
+            <div class="body-text">
+                <p>Hoy se cumple exactamente un año desde que decidimos que lo nuestro no sería solo una casualidad del destino, sino una elección consciente y diaria. Este <span class="highlight">7 de enero</span> marca el cierre de nuestro primer gran ciclo, 365 días en los que cada segundo ha contado para construir la historia más real y profunda que he vivido jamás. No es solo una fecha; es el recordatorio de que hace doce meses mi mundo encontró el equilibrio que tanto necesitaba en tu mirada.</p>
+                <p>Todo comenzó a cobrar un color diferente aquel <span class="highlight">21 de diciembre de 2024</span>. Ese primer beso fue la chispa que encendió todo este incendio de sentimientos que hoy me habita. Recuerdo los nervios, el pulso acelerado y esa certeza inmediata de que no quería que ese momento terminara nunca. Ese día fue el prólogo perfecto para este libro que hoy termina su primer capítulo con letras de oro. Hemos navegado por estaciones, por madrugadas de confesiones y por días grises que supimos iluminar con solo tomarnos de la mano.</p>
+                <p>Este año ha sido una lección constante de amor verdadero. Me has enseñado que amar no es solo estar en las celebraciones, sino ser el refugio seguro cuando el mundo exterior se vuelve demasiado ruidoso. Gracias por elegirme cada mañana, por tu paciencia infinita y por demostrarme que el amor de mi vida tiene nombre y apellido. Hemos plantado una semilla que ha crecido fuerte, con raíces profundas que nada podrá arrancar.</p>
+                <span class="handwritten">Apenas es el inicio de nuestro "para siempre".</span>
+            </div>
+        </section>
+
+        <section id="ella">
+            <h2 class="title-name">La Mujer de mi Vida</h2>
+            <div class="body-text">
+                <p>Intentar describirte con palabras es como tratar de explicar el color del cielo a alguien que nunca lo ha visto; las palabras se quedan cortas ante la magnitud de tu ser. Valeria, eres una mujer que irradia una <span class="highlight">autenticidad</span> que hoy en día es casi imposible de encontrar. Tienes esa mezcla perfecta entre una fuerza inquebrantable y una ternura que me desarma por completo en cuestión de segundos.</p>
+                <p>Me fascina la forma en que tus ojos brillan cuando hablas de lo que te apasiona, la elegancia natural de tus movimientos y esa carita hermosa que es, sin duda, mi paisaje favorito en este planeta. Pero más allá de lo evidente, lo que realmente me tiene cautivada es tu alma. Eres inteligente, perspicaz, divertida y posees una bondad que mejora todo lo que tocas. Eres el tipo de persona que deja una huella imborrable en el corazón de quien tiene la suerte de conocerte de verdad.</p>
+                <p>Admiro tu resiliencia, la forma en que enfrentas los retos y cómo nunca pierdes tu esencia a pesar de las circunstancias. Eres mi mejor amiga, mi confidente y la persona con la que puedo ser yo misma sin ningún filtro. Gracias por ser mi equilibrio, por desafiarme a crecer y por ser esa luz constante que guía mis días más oscuros. Eres, sencillamente, el ser más maravilloso que la vida pudo poner en mi camino.</p>
+            </div>
+        </section>
+
+        <section id="nosotros">
+            <h2 class="title-name">Nuestra Historia</h2>
+            <div class="gallery-grid">
+                <img src="https://www.dropbox.com/scl/fi/tq8mgaeqbhvacthy7ftiy/Foto1.jpg?rlkey=pef663j7f93t0txm67k69xkqm&raw=1">
+                <img src="https://www.dropbox.com/scl/fi/59bvqdcmfumdqw03of5e4/Foto2.jpg?rlkey=8o4d92tcppnu9rg3zgnhjdhxi&raw=1">
+                <img src="https://www.dropbox.com/scl/fi/6isprls0dkx3lffvez6xr/Foto3.jpg?rlkey=6hlnk9bt2o29hjumm3c1u6p83&raw=1">
+                <img src="https://www.dropbox.com/scl/fi/1rh45ljdayzu4lxrsn8ix/Foto4.jpg?rlkey=lggdirhrc8b8nhmiwg1x8bvv1&raw=1">
+                <img src="https://www.dropbox.com/scl/fi/391c62f2f5aw52lihlzfv/Foto5.jpg?rlkey=ltt0nqcfdwrefoo4b8pttnuvy&raw=1">
+                <img src="https://www.dropbox.com/scl/fi/poiqxfvzdkqavaqzdgw68/Foto6.jpg?rlkey=3o3mwrehaukdy79i5zx42ks6r&raw=1">
+            </div>
+            <div class="body-text">
+                <p>Nuestra historia no es un cuento de hadas perfecto, es algo mucho mejor: es una historia real. Una historia construida con base en la honestidad, el respeto y una química que desafía cualquier lógica. Somos <span class="highlight">Piscis y Libra</span>, un encuentro de mundos que muchos dirían opuestos, pero que en nosotros han encontrado la armonía más absoluta. Tú pones la paz donde yo traigo el caos, y yo pongo el fuego donde tú traes la calma.</p>
+                <p>Hemos creado un lenguaje propio, lleno de chistes internos, de miradas que reemplazan párrafos enteros y de una complicidad que solo se consigue cuando dos almas se reconocen de vidas pasadas. Cada lugar que hemos visitado, cada comida compartida y cada película que hemos visto se ha convertido en un ladrillo de este edificio indestructible que es nuestra relación. Somos un equipo, un bloque unido que ha aprendido a celebrar las victorias juntos y a lamerse las heridas cuando la vida se pone difícil.</p>
+            </div>
+        </section>
+
+        <section id="actualidad">
+            <h2 class="title-name">Hoy y Ahora</h2>
+            <div class="timer-container">
+                <div class="timer-box"><span id="d">0</span><label>Días</label></div>
+                <div class="timer-box"><span id="h">0</span><label>Horas</label></div>
+                <div class="timer-box"><span id="m">0</span><label>Min</label></div>
+                <div class="timer-box"><span id="s">0</span><label>Seg</label></div>
+            </div>
+            <div class="body-text">
+                <p>Hoy, sentados en este primer aniversario, miro el contador de arriba y no veo solo números, veo una acumulación de felicidad pura. El presente que habitamos es mi lugar seguro. Ya no hay miedo al futuro ni nostalgia del pasado, porque estar contigo en el "aquí y ahora" es todo lo que necesito. Nuestra relación ha madurado, ha echado raíces y hoy se siente más sólida que nunca.</p>
+                <p>Vivir el presente a tu lado significa disfrutar de lo cotidiano: de despertarme con un mensaje tuyo, de planear nuestras salidas, de las discusiones que terminan en risas y de la seguridad de que, pase lo que pase, tengo a la mejor compañera de vida. Este año nos ha transformado, nos ha pulido y nos ha preparado para todo lo que viene. Mi actualidad tiene tu nombre grabado en cada hora del día.</p>
+            </div>
+        </section>
+
+        <section id="futuro">
+            <h2 class="title-name">Nuestro Mañana</h2>
+            <div class="body-text">
+                <p>Si este primer año fue el cimiento, no puedo esperar a ver el rascacielos que vamos a construir. Mi visión del futuro es nítida y en todas las escenas estás tú. Sueño con los viajes que aún no hemos hecho, con los retos que vamos a superar tomados de la mano y con la infinidad de recuerdos que todavía esperan por nosotros en los años venideros. No busco una perfección inalcanzable, busco una vida entera de seguir creciendo a tu lado.</p>
+                <p>Prometo seguir trabajando en ser la pareja que mereces, en escucharte siempre, en apoyarte en cada uno de tus proyectos y en recordarte, cada día de los próximos cincuenta años, lo increíble que eres. Mi deseo de <span class="highlight">continuidad</span> no es solo un anhelo, es una promesa de vida. Vamos a escribir capítulos mucho más largos, más intensos y más felices que este. El futuro no me asusta, porque sé que estarás ahí para recibirlo conmigo.</p>
+                <span class="handwritten">Por una vida entera de nosotros.</span>
+            </div>
+        </section>
+
+        <section id="pensamientos">
+            <h2 class="title-name">Cartas al Alma</h2>
+            <div class="envelope-container" id="gridCartas"></div>
+        </section>
+
+        <footer>
+            Tu novio que cada día te ama más que ayer<br>
+            <span style="font-size: 14px; letter-spacing: 6px; opacity: 0.8; font-family: 'Montserrat';">PISCIS & LIBRA • 2025 - ∞</span>
+        </footer>
+    </div>
+
+    <div class="letter-modal" id="letterModal">
+        <div class="letter-content">
+            <span class="close-letter" onclick="closeLetter()">&times;</span>
+            <div id="letterText" class="body-text"></div>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+
+        // Lógica de música: Solo suena al darle clic
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                musicBtn.innerText = "⏸️";
+                musicBtn.classList.add('active');
+                musicBtn.style.animation = "floating 2s infinite ease-in-out";
+            } else {
+                audio.pause();
+                musicBtn.innerText = "🎵";
+                musicBtn.classList.remove('active');
+                musicBtn.style.animation = "none";
+            }
+        }
+
+        // Navegación suave
+        function showSection(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.getElementById('nav-' + id).classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Modo Oscuro
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            document.getElementById('modeBtn').innerText = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+
+        // Contador de tiempo
+        const startDate = new Date("Jan 7, 2025 00:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = now - startDate;
+            document.getElementById('d').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('h').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('m').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('s').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+        }, 1000);
+
+        // Cartas Extendidas
+        const letters = {
+    "Nuestra Carta": "Mi amor, me detengo a pensar en lo afortunado que soy por haber coincidido contigo en este vasto universo. Este año ha sido la prueba de que cuando dos personas se quieren de verdad, el mundo entero conspira a su favor. Te escribo esto para que guardes estas palabras como un amuleto: mi amor por ti es un compromiso eterno, una elección que renuevo con cada amanecer. Eres mi hogar, mi paz y mi mayor orgullo.",
+    "Si me necesitas": "No importa la distancia, la hora ni lo que esté pasando en mi vida. Si alguna vez sientes que el suelo se mueve bajo tus pies, búscame. Seré tu ancla, tu refugio y el silencio que necesitas para sanar. Mi amor por ti incluye cuidarte en tus momentos de mayor fragilidad. Siempre estaré aquí, a un suspiro de distancia, listo para sostenerte.",
+    "Si me extrañas": "Cierra los ojos y busca mi mano en tu memoria. Recuerda el calor de nuestros abrazos y ese 21 de diciembre donde el destino nos selló. La distancia física no es nada frente a la conexión de nuestras almas. Estoy contigo en cada pensamiento, en cada canción que escuchas y en cada latido de tu corazón. No te sientas sola, porque habitas en mí.",
+    "Tras un mal día": "Suelta toda la carga que traes sobre los hombros. Eres una mujer increíblemente fuerte, pero aquí, conmigo, tienes permiso para estar cansada. Deja que mis caricias borren el estrés del día. Mañana el sol brillará de nuevo, pero por ahora, descansa en el refugio de mi amor. Todo estará bien porque nos tenemos el uno al otro.",
+    "Si no duermes": "Imagina que estoy a tu lado, acariciando tu sien y susurrándote lo mucho que te amo. Deja que mi voz calme tus pensamientos y que el recuerdo de nuestra complicidad te dé la tranquilidad necesaria para dormir. Descansa, amor mío, que yo velo tus sueños en la distancia hasta que podamos dormir abrazados de nuevo.",
+    "Si estás enojado": "Perdón si el día se puso difícil o si cometimos un error. Antes de dejar que el orgullo gane, recuerda que somos un equipo. No permitas que un momento de frustración borre un año de felicidad. Déjame abrazarte fuerte hasta que el enojo se disuelva y podamos hablar con el corazón abierto como siempre lo hacemos.",
+    "Si te sientes inseguro": "Si el mundo te hace dudar, mírate a través de mis ojos. Verás a una mujer talentosa, valiente, con una luz que ilumina todo a su paso. Eres perfecta para mí, con tus virtudes y tus sombras. No hay nada en ti que no sea digno de admiración. Eres, y siempre serás, mi mayor tesoro. No lo olvides nunca.",
+    "Cuando lo logres": "¡Sabía que lo harías! Nunca dudé de tu capacidad ni de tu brillantez. Verte triunfar es como triunfar yo mismo. Celebro cada uno de tus pasos con una alegría que no me cabe en el pecho. Eres grande, mi amor, y este es solo el inicio de todos los éxitos que vamos a festejar juntos. ¡Estoy tan orgulloso de ti!",
+    "Si tienes miedo": "Aprieta mi mano con fuerza. El miedo es solo una sombra que se desvanece ante la luz de nuestra unión. No hay obstáculo que no podamos saltar si lo hacemos juntos. Seré tu escudo y tu valentía cuando sientas que te falta. Juntos somos invencibles, recuérdalo siempre.",
+    "Si dudas de mí": "Mírame profundamente a los ojos la próxima vez que nos veamos. En ellos encontrarás la verdad más pura: eres mi presente absoluto y el único futuro que deseo. Mi lealtad, mi respeto y mi corazón entero te pertenecen desde aquel primer beso. No hay nadie más, nunca lo habrá, porque tú eres mi todo.",
+    "Si me deseas": "Cierra los ojos y recuerda el roce de nuestra piel, la intensidad de nuestras miradas y ese fuego que solo nosotros sabemos encender. No puedo esperar a tenerte cerca, a sentir tu respiración contra la mía y a recordarte físicamente cuánto te amo. Eres mi mayor tentación y mi mayor placer.",
+    "Si estás bloqueado": "Tómate un respiro, mi vida. La inspiración no se ha ido, solo está descansando. Sal a caminar, mira el horizonte y recuerda que yo creo en tu talento infinitamente. No te presiones, el camino se aclarará pronto. Mientras tanto, deja que mi amor sea el espacio donde puedas simplemente ser.",
+    "7 de Enero 2027": "Esta carta es una cápsula del tiempo. La escribo hoy, en 2026, para recordarte que mi amor por ti no tiene fecha de caducidad. Seguiremos aquí, celebrando un año más de complicidad y crecimiento. Gracias por ser la protagonista de mi vida. Para cuando leas esto en el futuro, seguramente te amaré todavía más de lo que te amo hoy."
+}
+        const grid = document.getElementById('gridCartas');
+        Object.keys(letters).forEach(key => {
+            const div = document.createElement('div');
+            div.className = 'envelope';
+            div.innerHTML = `<h3>${key}</h3>`;
+            div.onclick = () => {
+                document.getElementById('letterText').innerHTML = `<p>${letters[key]}</p>`;
+                document.getElementById('letterModal').style.display = 'flex';
+            };
+            grid.appendChild(div);
+        });
+
+        function closeLetter() {
+            document.getElementById('letterModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
