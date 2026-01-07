@@ -563,11 +563,20 @@ function closeLetter() {
         function closeLetter() {
             document.getElementById('letterModal').style.display = 'none';
         }
-        function playPerfectSong() {
-    document.getElementById('bgMusic').pause();
-    document.getElementById('perfectSong').play();
+        
+      function playPerfectSong() {
+    const perfectSong = document.getElementById('perfectSong');
+    const bgMusic = document.getElementById('bgMusic');
+    
+    if (perfectSong.paused) {
+        bgMusic.pause();
+        perfectSong.play();
+    } else {
+        perfectSong.pause();
+    }
 }
     </script>
 </body>
 </html>
+
 
