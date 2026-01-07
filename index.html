@@ -635,6 +635,22 @@ function closeLetter() {
         function closeLetter() {
             document.getElementById('letterModal').style.display = 'none';
         }
+        function toggleMusic() {
+    const audio = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+
+    if (audio.paused) {
+        audio.play();
+        musicBtn.innerText = "⏸️";
+        musicBtn.classList.add('active');
+        musicBtn.style.animation = "floating 2s infinite ease-in-out";
+    } else {
+        audio.pause();
+        musicBtn.innerText = "🎵";
+        musicBtn.classList.remove('active');
+        musicBtn.style.animation = "none";
+    }
+}
         
       function playPerfectSong() {
     const perfectSong = document.getElementById('perfectSong');
@@ -650,6 +666,7 @@ function closeLetter() {
     </script>
 </body>
 </html>
+
 
 
 
