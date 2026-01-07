@@ -30,6 +30,17 @@
             --envelope-bg: #3d1c26;
             --body-bg: #12050a;
         }
+        body.dark-mode #esHoy {
+    color: var(--text-color) !important;
+}
+body.dark-mode #esHoy * {
+    color: var(--text-color) !important;
+}
+body.dark-mode #esHoy button {
+    background: #ff4d7d !important;
+    color: white !important;
+}
+        
 
         /* RESET & SCROLL OCULTO */
         * {
@@ -323,14 +334,20 @@
 </head>
 <body>
 
-    <div class="floating-controls">
-        <button class="btn-float" onclick="toggleDarkMode()" id="modeBtn" title="Cambiar Modo">🌙</button>
-        <button class="btn-float" onclick="toggleMusic()" id="musicBtn" title="Reproducir Música">🎵</button>
-    </div>
+   <div class="floating-controls">
+    <button class="btn-float" onclick="toggleDarkMode()" id="modeBtn" title="Cambiar Modo">🌙</button>
+    <button class="btn-float" onclick="toggleMusic()" id="musicBtn" title="Cristina Yatra">🎵</button>
+</div>
 
     <audio id="bgMusic" loop>
-        <source src="https://dl.dropboxusercontent.com/scl/fi/bz43xatwib7r6q5rr9ncf/Sebastian-Yatra-Cristina-Letra-LatinHype.mp3?rlkey=xrgscx3bz0xvyy5viwpgysdcb&raw=1" type="audio/mpeg">
-    </audio>
+    <source src="https://dl.dropboxusercontent.com/scl/fi/bz43xatwib7r6q5rr9ncf/Sebastian-Yatra-Cristina-Letra-LatinHype.mp3?rlkey=xrgscx3bz0xvyy5viwpgysdcb&raw=1" type="audio/mpeg">
+</audio>
+
+<!-- 🎵 ED SHEERAN (NUEVO BOTÓN FLOTANTE) -->
+<audio id="perfectSong" loop>
+    <source src="https://dl.dropboxusercontent.com/scl/fi/t3lgns0w67i0sqtlnt8wo/ED-SHEERAN-PERFECT-instrumental-JOEL-MIRANDA.mp3?rlkey=vcw5xb0aa9gzuhd5k5gk6rx67&raw=1" type="audio/mpeg">
+</audio>
+
 
     <nav class="nav-menu">
         <a class="nav-link active" onclick="showSection('inicio')" id="nav-inicio">El Primer Año</a>
@@ -339,9 +356,27 @@
         <a class="nav-link" onclick="showSection('actualidad')" id="nav-actualidad">Presente</a>
         <a class="nav-link" onclick="showSection('futuro')" id="nav-futuro">Futuro</a>
         <a class="nav-link" onclick="showSection('pensamientos')" id="nav-pensamientos">Cartas</a>
+        <a class="nav-link" onclick="showSection('esHoy')" id="nav-esHoy">Es Hoy</a>
+
     </nav>
 
     <div class="main-canvas">
+     <section id="esHoy">
+    <h2 class="title-name">Carta del 7 de Enero</h2>
+    <div class="body-text" style="background: var(--card-bg); padding: 40px; border-radius: 25px; border: 4px solid var(--romance-red); margin: 30px 0;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h3 style="font-family: 'Dancing Script', cursive; font-size: 32px; color: var(--romance-red);">💕 Feliz Aniversario💕</h3>
+            <button onclick="playPerfectSong()" style="background: var(--romance-red); color: white; padding: 20px 40px; border: none; border-radius: 30px; font-size: 18px; cursor: pointer; box-shadow: 0 10px 30px rgba(142,14,47,0.4); width: 100%; max-width: 350px;">
+                 Presiona aquí antes de leer
+            </button>
+        </div>
+        
+        <div class="body-text">
+            "Mi amor….  Desde  hace días vengo dándole vueltas a todo lo que hemos vivido, pero hoy fue distinto: fue como si cada recuerdo, cada risa, cada pelea y cada reconciliación se me vinieran encima de golpe.  Me di cuenta de que, si dejaba pasar este momento sin decirte todo lo que siento, me iba a quedar corto contigo, con nosotros y con todo lo que hemos construido en este primer año. Me puse a pensar en todo lo que ha pasado y me explotó un poco la cabeza. No quería dejar pasar este momento sin decirte todo lo que tengo guardado, porque estamos a nada de cumplir nuestro primer año y, sinceramente, mirar hacia atrás me pone la piel de gallina. ¿Te acuerdas de ese 7 de enero? Yo estaba con los nervios a mil, pero con esa sensación en el pecho de que por fin estaba pasando algo de verdad. Empezamos con toda la ilusión del mundo, pero ninguno de los dos se imaginaba la montaña rusa que se nos venía encima. Ese día, sin saberlo, no solo empezamos una relación, empezamos una historia llena de escenas que hoy atesoro: las conversaciones eternas hasta la madrugada, las salidas improvisadas que terminaban en risas, los \"voy en camino\" que me aceleraban el corazón, las miradas que lo decían todo sin necesidad de palabras. Ese 7 de enero fue el punto de partida de algo que, aunque a veces dolió, hoy puedo decir con la mano en el corazón que ha valido completamente la pena. No fue un camino fácil (y eso es lo mejor) Vamos a ser sinceros: este año nos dio con todo. No fue el típico año de película donde todo es perfecto. Nos tocaron días difíciles, de esos donde los problemas externos nos querían hundir y donde las adversidades nos pusieron a prueba hasta el límite. Pasamos por momentos de estrés, por malentendidos, por obstáculos que parecían muros gigantes que no nos dejaban ver el sol. Hubo días en los que el cansancio, la rutina diaria, los problemas familiares o las dudas se nos colaban en medio, intentando separarnos. Días en los que quizás hablamos menos de lo que debíamos, en los que no nos entendíamos a la primera, en los que los planes se caían y todo parecía ir en contra. Pero incluso en esos momentos oscuros, por muy rotos o agotados que estuviéramos, siempre terminábamos buscando la forma de encontrarnos otra vez. Pero, ¿sabes qué es lo que más me vuela la cabeza? Que no nos soltamos. Hubo mil razones para que cualquiera de los dos tirara la toalla, pero aquí estamos. Cada vez que el mundo se puso pesado, nos refugiamos el uno en el otro. Aprendimos a pelear por nosotros, no entre nosotros. Y sí, dolió a veces, y sí, nos cansamos, pero cada obstáculo que saltamos nos hizo más fuertes. Hoy te miro y no solo veo a mi pareja, veo a mi equipo, a la persona con la que iría a cualquier guerra porque sé que me cuida la espalda. Eso para mí es amor de verdad: no el que solo se luce en las fotos bonitas de Instagram, sino el que se construye en los días en los que nadie está viendo. El amor que se ve cuando uno de los dos se rompe por dentro y el otro se queda firme, cuando los planes se caían pero igual nos tomamos de la mano, cuando nos decimos las verdades incómodas no para lastimarnos, sino para crecer juntos. Me llena de orgullo saber que, en vez de soltarnos cuando todo se puso cuesta arriba, elegimos apretarnos más fuerte y salir adelante. Estamos a nada de la meta Me da mucha risa (y orgullo) pensar en la gente que quizás no daba una moneda por nosotros o en los momentos en que nosotros mismos dudamos. Míranos! Estamos a un paso de nuestro primer aniversario. Sobrevivimos a las tormentas, a los días malos y a los \"no puedo más\". Y no solo sobrevivimos: crecimos como pareja y también como personas. Aprendimos a comunicarnos mejor (aunque a veces nos cueste), a escucharnos de verdad, a respetar nuestros espacios cuando los necesitamos, a entender que no siempre vamos a estar al 100%, pero que aun así podemos acompañarnos. Aprendimos a decir \"lo siento\" sin orgullo, \"me equivoqué\" sin miedo, \"te necesito\" sin vergüenza y también \"aquí estoy para ti\" con el corazón abierto. Gracias por aguantarme en mis días grises, por hacerme reír cuando solo quería llorar y por no rendirte cuando las cosas se pusieron feas. Este año me enseñó que el amor no es solo estar cuando todo es risa, sino quedarte cuando todo es un desastre y ayudar a limpiar el desorden. Gracias por ser paciente cuando yo me desesperaba, por abrazarme fuerte cuando ni yo mismo sabía qué me pasaba, por insistir en hablar cuando yo quería alejarme, por quedarte a mi lado cuando hubiera sido más fácil irte. Gracias por cada mensaje de buenos días, cada llamada inesperada, cada \"avísame cuando llegues a casa\", cada detalle que a veces parece pequeño, pero que para mí significa un mundo entero. Contigo entendí que el amor también es trabajo en equipo, complicidad diaria, respeto mutuo y elección constante día tras día. Por lo que viene Aquel 7 de enero elegí empezar algo contigo, pero hoy, después de ver lo guerreros que somos, te vuelvo a elegir mil veces más. Si pudimos con este primer año de locos, podemos con lo que sea que la vida nos aviente mañana. Estoy muy feliz de que seas tú. Gracias por quedarte, por luchar y por ser mi lugar seguro. Falta nada para nuestro día y ya quiero celebrarlo como nos merecemos. Y cuando pienso en lo que viene, no puedo evitar emocionarme como un niño. No sé qué nos traerá el futuro: más cambios, más retos familiares, nuevos sueños como ese viaje que siempre mencionas, nuevas metas como mudarnos juntos o simplemente más días de rutina que terminan siendo perfectos. Pero sí sé algo con certeza: quiero seguir viviéndolo todo contigo. Quiero seguir sumando aniversarios, recuerdos inolvidables, viajes locos, proyectos compartidos, risas interminables y hasta más discusiones que después terminen en abrazos más fuertes. Quiero que, cuando volvamos a mirar hacia atrás dentro de unos años, podamos decir: \"si el primer año fue duro pero hermoso, imagínate todo lo que hemos construido después\". Gracias por ser mi apoyo incondicional, mi calma en medio del caos, mi pausa en los días acelerados, mi risa favorita y mi historia preferida. Gracias por enseñarme que el amor no siempre es fácil, pero que cuando se da con el corazón abierto y se cuida entre dos, se vuelve lo más valioso que uno puede tener en esta vida. Y sí, falta nada para nuestro día, y quiero celebrarlo contigo no solo como el fin de un primer año, sino como el inicio de todo lo que aún nos falta por vivir juntos. Con todo mi amor, siempre tuyo"
+    "Deseo": "Cierra los ojos y recuerda el roce de nuestra piel, la intensidad de nuestras miradas y ese fuego que solo nosotros sabemos encender. Recuerda cómo el tiempo pareció detenerse en aquella habitación, donde el único sonido era el eco de nuestra respiración agitada y el roce de la ropa cayendo al suelo. Me obsesiona el recuerdo de mis manos recorriendo el contorno de tu cuerpo, reconociendo cada curva, cada relieve, mientras tu piel me respondía con ese calor que solo tú emites cuando estás a punto de entregarte. No puedo esperar a tenerte cerca, a sentir tu respiración contra la mía y a recordarte físicamente cuánto te amo. Siento una sed insaciable de ti que me recorre la columna. Quiero volver a sentir esa potencia que nos invade cuando te sujeto por la cintura y te pego a mí, eliminando cualquier rastro de aire entre los dos. Me persigue la imagen de tu espalda arqueándose bajo mi tacto, de mis dedos enredados en tu pelo mientras te obligo a mirarme, para que veas en mis ojos que en ese momento eres dueña absoluta de mi voluntad y de mi fuerza. Deseo volver a perderme en la humedad de tu boca, recorrer con mi lengua el camino de tu cuello hasta encontrar ese punto que te hace perder el control. Quiero sentir cómo tus piernas se enredan en mi cintura, reclamándome, y cómo tu cuerpo se tensa cuando mi boca encuentra los rincones más prohibidos de tu geografía. Es una necesidad física, casi primitiva, de sentir tu humedad, tu calor y esa forma tan tuya de recibirme, donde la delicadeza se pierde y solo queda la urgencia de poseernos hasta quedar exhaustos. Me quema la memoria de tus uñas marcando mi piel, de tus suspiros convirtiéndose en gemidos desesperados cuando el placer nos desborda. Quiero sentir cómo te estremeces bajo mi peso, cómo me buscas con esa hambre que solo yo sé calmar, y cómo nos fundimos en ese ritmo salvaje que nos pertenece solo a nosotros. No hay rincón de tu cuerpo que no quiera volver a reclamar, ni sensación que no quiera volver a provocarte hasta que no puedas más que pronunciar mi nombre. Eres mi mayor tentación y mi mayor placer. Te deseo con una ferocidad que no conoce descanso, y te prometo que, cuando nuestras pieles vuelvan a tocarse, el recuerdo de aquel encuentro será solo un pálido reflejo de lo que te voy a hacer sentir.",
+        </div>
+    </div>
+</section>
         
         <section id="inicio" class="active">
             <div style="text-align: center; margin-bottom: 60px;">
@@ -428,19 +463,25 @@
         const musicBtn = document.getElementById('musicBtn');
 
         // Lógica de música: Solo suena al darle clic
-        function toggleMusic() {
-            if (audio.paused) {
-                audio.play();
-                musicBtn.innerText = "⏸️";
-                musicBtn.classList.add('active');
-                musicBtn.style.animation = "floating 2s infinite ease-in-out";
-            } else {
-                audio.pause();
-                musicBtn.innerText = "🎵";
-                musicBtn.classList.remove('active');
-                musicBtn.style.animation = "none";
-            }
-        }
+       // 🎵 ED SHEERAN - IGUAL QUE CRISTINA
+function togglePerfect() {
+    const perfectAudio = document.getElementById('perfectSong');
+    const perfectBtn = document.getElementById('perfectBtn');
+    
+    if (perfectAudio.paused) {
+        perfectAudio.play();
+        perfectBtn.innerText = "⏸️";
+        perfectBtn.classList.add('active');
+        perfectBtn.style.animation = "floating 2s infinite ease-in-out";
+        document.getElementById('bgMusic').pause(); // Pausar Cristina
+    } else {
+        perfectAudio.pause();
+        perfectBtn.innerText = "💕";
+        perfectBtn.classList.remove('active');
+        perfectBtn.style.animation = "none";
+    }
+}
+
 
         // Navegación suave
         function showSection(id) {
@@ -476,8 +517,6 @@
     "Tras un mal día": "Suelta toda la carga que traes sobre los hombros. Eres una mujer increíblemente fuerte, pero aquí, conmigo, tienes permiso para estar cansada. Deja que mis caricias borren el estrés del día. Mañana el sol brillará de nuevo, pero por ahora, descansa en el refugio de mi amor. Todo estará bien porque nos tenemos el uno al otro.",
     "Cuando No Puedas Dormir": "Hola, mi amor. Me imagino que si estás leyendo esto es porque el sueño te está ganando la batalla y tu cabecita no deja de dar vueltas. Me duele un poquito pensar que estás ahí desvelada, quizás dándole vueltas a cosas que pesan o simplemente con los ojos abiertos esperando a que el cansancio llegue. Solo quería escribirte esto para decirte que, aunque no esté ahí físicamente para darte mimos o dejar que te apoyes en mi pecho, mi corazón está pegadito al tuyo. A veces la noche se hace muy larga y los pensamientos se vuelven más grandes de lo que realmente son, pero no dejes que te asusten, amor. Eres la mujer más increíble que conozco y tienes una fuerza que ni tú misma te crees. Así que intenta soltar un poquito los hombros, relaja la cara y deja que el colchón te sostenga. No tienes que cargar con el mundo entero ahora mismo; mañana yo te ayudo a cargar lo que sea necesario, pero por ahora, solo intenta ser tú, en calma. Me encantaría estar ahí para acariciarte el pelo, para besarte la frente y decirte bajito que todo va a estar bien, porque de verdad lo va a estar. Quédate tranquila pensando en lo mucho que te quiero y en todas las cosas bonitas que nos faltan por vivir. Imagínate que estoy ahí abrazándote fuerte, de esa forma en la que parece que el tiempo se detiene y nada malo puede pasar. Siente el calor de mi abrazo y deja que ese pensamiento sea lo único que te acompañe en este silencio. Sé que a veces el silencio de la madrugada se siente un poco pesado, pero intenta verlo como un espacio solo para nosotros, donde nadie más puede entrar. No pienses en lo que tienes que hacer mañana, ni en lo que no alcanzaste a terminar hoy. Todo eso está en pausa ahora. Lo único real es este momento y lo mucho que te extraño. Me gusta pensar que, si te concentras mucho, puedes sentir mis besos en tus párpados para ayudarte a que se cierren de a poquito, con la suavidad de quien sabe que tiene un tesoro entre sus manos. Cierra los ojos sin prisa, sin presionarte por dormir. Solo descansa, porque te mereces toda la paz del mundo. Deja que tu respiración se vuelva lenta, imagínate que estamos en nuestro lugar favorito, ese donde el ruido de afuera no importa. Mañana cuando despiertes, aquí voy a estar para ti, como siempre, listo para recordarte lo especial que eres y para acompañarte en lo que venga. Duerme tranquila, amor mío, que yo te cuido desde aquí. Te amo con todo lo que soy, descansa mi vida.",
     "Sueño": "Cuando No Puedas Dormir Amor, sé que a veces la noche se siente un poco más grande de lo normal y que, por más que intentas cerrar los ojos, tu mente prefiere quedarse despierta recordándote cosas o simplemente haciéndote sentir que el descanso está lejos. Me gustaría estar ahí ahora mismo para apagar la luz, quitarte el celular de las manos y envolverte en mis brazos hasta que sientas que no hay nada en el mundo de qué preocuparse. Me encantaría que pudieras verte a través de mis ojos en este momento, para que entendieras que no hay razón para estar intranquila, porque eres lo más valioso que tengo y siempre voy a estar aquí para cuidarte. Intenta no pelear contra ese desvelo; a veces el cuerpo simplemente necesita un momento de quietud antes de rendirse al sueño. Imagínate que mi voz te está hablando muy bajito, contándote lo mucho que me gusta el futuro que estoy construyendo a tu lado y cómo cada detalle de tu personalidad me hace sentir que soy el hombre más afortunado. Piensa en esos momentos en los que nos reímos por tonterías o en esos besos que nos damos y que parecen curarlo todo. Deja que esos recuerdos te llenen el pecho de calorcito y vayan borrando cualquier rastro de ansiedad o cansancio mental que tengas ahora mismo. Me gusta imaginar que mis manos pueden alcanzar las tuyas a través de estas palabras, para darte ese apretón suave que te dice \"aquí estoy\". No te sientas mal por no poder dormir; la noche es sabia y a veces nos regala estos ratitos de soledad para recordar lo que de verdad importa. Y lo que importa para mí eres tú, tu paz y tu sonrisa. Quisiera ser ese refugio donde puedas soltar todas tus defensas, donde no tengas que ser fuerte ni perfecta, solo mi chica, descansando y dejándose querer. Así que respira profundo, siente cómo el aire entra y sale de tu cuerpo, y confía en que todo está en orden. El mañana va a llegar con su propia luz y sus propias soluciones, no tienes por qué adelantarte a él. Quédate un ratito más así, disfrutando de la suavidad de tus sábanas y del silencio, sabiendo que en algún lugar yo estoy pensando en ti con toda la ternura del mundo. Duerme con la seguridad de que eres profundamente amada y de que, pase lo que pase, mañana nos despertaremos para seguir escribiendo nuestra historia. Te amo más de lo que las palabras pueden explicar, descansa mi cielo.",
-    "Es Hoy": "Mi amor…. Desde hace días vengo dándole vueltas a todo lo que hemos vivido, pero hoy fue distinto: fue como si cada recuerdo, cada risa, cada pelea y cada reconciliación se me vinieran encima de golpe. Me di cuenta de que, si dejaba pasar este momento sin decirte todo lo que siento, me iba a quedar corto contigo, con nosotros y con todo lo que hemos construido en este primer año. Me puse a pensar en todo lo que ha pasado y me explotó un poco la cabeza. No quería dejar pasar este momento sin decirte todo lo que tengo guardado, porque estamos a nada de cumplir nuestro primer año y, sinceramente, mirar hacia atrás me pone la piel de gallina. ¿Te acuerdas de ese 7 de enero? Yo estaba con los nervios a mil, pero con esa sensación en el pecho de que por fin estaba pasando algo de verdad. Empezamos con toda la ilusión del mundo, pero ninguno de los dos se imaginaba la montaña rusa que se nos venía encima. Ese día, sin saberlo, no solo empezamos una relación, empezamos una historia llena de escenas que hoy atesoro: las conversaciones eternas hasta la madrugada, las salidas improvisadas que terminaban en risas, los \"voy en camino\" que me aceleraban el corazón, las miradas que lo decían todo sin necesidad de palabras. Ese 7 de enero fue el punto de partida de algo que, aunque a veces dolió, hoy puedo decir con la mano en el corazón que ha valido completamente la pena. No fue un camino fácil (y eso es lo mejor) Vamos a ser sinceros: este año nos dio con todo. No fue el típico año de película donde todo es perfecto. Nos tocaron días difíciles, de esos donde los problemas externos nos querían hundir y donde las adversidades nos pusieron a prueba hasta el límite. Pasamos por momentos de estrés, por malentendidos, por obstáculos que parecían muros gigantes que no nos dejaban ver el sol. Hubo días en los que el cansancio, la rutina diaria, los problemas familiares o las dudas se nos colaban en medio, intentando separarnos. Días en los que quizás hablamos menos de lo que debíamos, en los que no nos entendíamos a la primera, en los que los planes se caían y todo parecía ir en contra. Pero incluso en esos momentos oscuros, por muy rotos o agotados que estuviéramos, siempre terminábamos buscando la forma de encontrarnos otra vez. Pero, ¿sabes qué es lo que más me vuela la cabeza? Que no nos soltamos. Hubo mil razones para que cualquiera de los dos tirara la toalla, pero aquí estamos. Cada vez que el mundo se puso pesado, nos refugiamos el uno en el otro. Aprendimos a pelear por nosotros, no entre nosotros. Y sí, dolió a veces, y sí, nos cansamos, pero cada obstáculo que saltamos nos hizo más fuertes. Hoy te miro y no solo veo a mi pareja, veo a mi equipo, a la persona con la que iría a cualquier guerra porque sé que me cuida la espalda. Eso para mí es amor de verdad: no el que solo se luce en las fotos bonitas de Instagram, sino el que se construye en los días en los que nadie está viendo. El amor que se ve cuando uno de los dos se rompe por dentro y el otro se queda firme, cuando los planes se caían pero igual nos tomamos de la mano, cuando nos decimos las verdades incómodas no para lastimarnos, sino para crecer juntos. Me llena de orgullo saber que, en vez de soltarnos cuando todo se puso cuesta arriba, elegimos apretarnos más fuerte y salir adelante. Estamos a nada de la meta Me da mucha risa (y orgullo) pensar en la gente que quizás no daba una moneda por nosotros o en los momentos en que nosotros mismos dudamos. Míranos! Estamos a un paso de nuestro primer aniversario. Sobrevivimos a las tormentas, a los días malos y a los \"no puedo más\". Y no solo sobrevivimos: crecimos como pareja y también como personas. Aprendimos a comunicarnos mejor (aunque a veces nos cueste), a escucharnos de verdad, a respetar nuestros espacios cuando los necesitamos, a entender que no siempre vamos a estar al 100%, pero que aun así podemos acompañarnos. Aprendimos a decir \"lo siento\" sin orgullo, \"me equivoqué\" sin miedo, \"te necesito\" sin vergüenza y también \"aquí estoy para ti\" con el corazón abierto. Gracias por aguantarme en mis días grises, por hacerme reír cuando solo quería llorar y por no rendirte cuando las cosas se pusieron feas. Este año me enseñó que el amor no es solo estar cuando todo es risa, sino quedarte cuando todo es un desastre y ayudar a limpiar el desorden. Gracias por ser paciente cuando yo me desesperaba, por abrazarme fuerte cuando ni yo mismo sabía qué me pasaba, por insistir en hablar cuando yo quería alejarme, por quedarte a mi lado cuando hubiera sido más fácil irte. Gracias por cada mensaje de buenos días, cada llamada inesperada, cada \"avísame cuando llegues a casa\", cada detalle que a veces parece pequeño, pero que para mí significa un mundo entero. Contigo entendí que el amor también es trabajo en equipo, complicidad diaria, respeto mutuo y elección constante día tras día. Por lo que viene Aquel 7 de enero elegí empezar algo contigo, pero hoy, después de ver lo guerreros que somos, te vuelvo a elegir mil veces más. Si pudimos con este primer año de locos, podemos con lo que sea que la vida nos aviente mañana. Estoy muy feliz de que seas tú. Gracias por quedarte, por luchar y por ser mi lugar seguro. Falta nada para nuestro día y ya quiero celebrarlo como nos merecemos. Y cuando pienso en lo que viene, no puedo evitar emocionarme como un niño. No sé qué nos traerá el futuro: más cambios, más retos familiares, nuevos sueños como ese viaje que siempre mencionas, nuevas metas como mudarnos juntos o simplemente más días de rutina que terminan siendo perfectos. Pero sí sé algo con certeza: quiero seguir viviéndolo todo contigo. Quiero seguir sumando aniversarios, recuerdos inolvidables, viajes locos, proyectos compartidos, risas interminables y hasta más discusiones que después terminen en abrazos más fuertes. Quiero que, cuando volvamos a mirar hacia atrás dentro de unos años, podamos decir: \"si el primer año fue duro pero hermoso, imagínate todo lo que hemos construido después\". Gracias por ser mi apoyo incondicional, mi calma en medio del caos, mi pausa en los días acelerados, mi risa favorita y mi historia preferida. Gracias por enseñarme que el amor no siempre es fácil, pero que cuando se da con el corazón abierto y se cuida entre dos, se vuelve lo más valioso que uno puede tener en esta vida. Y sí, falta nada para nuestro día, y quiero celebrarlo contigo no solo como el fin de un primer año, sino como el inicio de todo lo que aún nos falta por vivir juntos. Con todo mi amor, siempre tuyo",
-    "Deseo": "Cierra los ojos y recuerda el roce de nuestra piel, la intensidad de nuestras miradas y ese fuego que solo nosotros sabemos encender. Recuerda cómo el tiempo pareció detenerse en aquella habitación, donde el único sonido era el eco de nuestra respiración agitada y el roce de la ropa cayendo al suelo. Me obsesiona el recuerdo de mis manos recorriendo el contorno de tu cuerpo, reconociendo cada curva, cada relieve, mientras tu piel me respondía con ese calor que solo tú emites cuando estás a punto de entregarte. No puedo esperar a tenerte cerca, a sentir tu respiración contra la mía y a recordarte físicamente cuánto te amo. Siento una sed insaciable de ti que me recorre la columna. Quiero volver a sentir esa potencia que nos invade cuando te sujeto por la cintura y te pego a mí, eliminando cualquier rastro de aire entre los dos. Me persigue la imagen de tu espalda arqueándose bajo mi tacto, de mis dedos enredados en tu pelo mientras te obligo a mirarme, para que veas en mis ojos que en ese momento eres dueña absoluta de mi voluntad y de mi fuerza. Deseo volver a perderme en la humedad de tu boca, recorrer con mi lengua el camino de tu cuello hasta encontrar ese punto que te hace perder el control. Quiero sentir cómo tus piernas se enredan en mi cintura, reclamándome, y cómo tu cuerpo se tensa cuando mi boca encuentra los rincones más prohibidos de tu geografía. Es una necesidad física, casi primitiva, de sentir tu humedad, tu calor y esa forma tan tuya de recibirme, donde la delicadeza se pierde y solo queda la urgencia de poseernos hasta quedar exhaustos. Me quema la memoria de tus uñas marcando mi piel, de tus suspiros convirtiéndose en gemidos desesperados cuando el placer nos desborda. Quiero sentir cómo te estremeces bajo mi peso, cómo me buscas con esa hambre que solo yo sé calmar, y cómo nos fundimos en ese ritmo salvaje que nos pertenece solo a nosotros. No hay rincón de tu cuerpo que no quiera volver a reclamar, ni sensación que no quiera volver a provocarte hasta que no puedas más que pronunciar mi nombre. Eres mi mayor tentación y mi mayor placer. Te deseo con una ferocidad que no conoce descanso, y te prometo que, cuando nuestras pieles vuelvan a tocarse, el recuerdo de aquel encuentro será solo un pálido reflejo de lo que te voy a hacer sentir.",
     "Si estás enojado": "Perdón si el día se puso difícil o si cometimos un error. Antes de dejar que el orgullo gane, recuerda que somos un equipo. No permitas que un momento de frustración borre un año de felicidad. Déjame abrazarte fuerte hasta que el enojo se disuelva y podamos hablar con el corazón abierto como siempre lo hacemos.",
     "Si te sientes inseguro": "Si el mundo te hace dudar, mírate a través de mis ojos. Verás a una mujer talentosa, valiente, con una luz que ilumina todo a su paso. Eres perfecta para mí, con tus virtudes y tus sombras. No hay nada en ti que no sea digno de admiración. Eres, y siempre serás, mi mayor tesoro. No lo olvides nunca.",
     "Cuando lo logres": "¡Sabía que lo harías! Nunca dudé de tu capacidad ni de tu brillantez. Verte triunfar es como triunfar yo mismo. Celebro cada uno de tus pasos con una alegría que no me cabe en el pecho. Eres grande, mi amor, y este es solo el inicio de todos los éxitos que vamos a festejar juntos. ¡Estoy tan orgulloso de ti!",
@@ -486,7 +525,30 @@
     "Si estás bloqueado": "Tómate un respiro, mi vida. La inspiración no se ha ido, solo está descansando. Sal a caminar, mira el horizonte y recuerda que yo creo en tu talento infinitamente. No te presiones, el camino se aclarará pronto. Mientras tanto, deja que mi amor sea el espacio donde puedas simplemente ser.",
     "7 de Enero 2027": "Esta carta es una cápsula del tiempo. La escribo hoy, en 2026, para recordarte que mi amor por ti no tiene fecha de caducidad. Seguiremos aquí, celebrando un año más de complicidad y crecimiento. Gracias por ser la protagonista de mi vida. Para cuando leas esto en el futuro, seguramente te amaré todavía más de lo que te amo hoy."
 }
+function playLetterMusic() {
+    const letterAudio = document.getElementById('letterMusic');
+    const bgMusic = document.getElementById('bgMusic');
+    
+    // Pausar música de fondo
+    bgMusic.pause();
+    
+    // Reproducir Ed Sheeran
+    letterAudio.play().catch(e => {
+        alert('🎵 Primero activa el botón flotante de música 🎵');
+    });
+}
 
+// Cerrar carta restaurando música original
+function closeLetter() {
+    document.getElementById('letterModal').style.display = 'none';
+    document.getElementById('letterMusic').pause();
+    document.getElementById('letterMusic').currentTime = 0;
+    
+    // Restaurar Yatra si estaba activa
+    if (musicBtn && musicBtn.innerText === "⏸️") {
+        document.getElementById('bgMusic').play();
+    }
+}
         const grid = document.getElementById('gridCartas');
         Object.keys(letters).forEach(key => {
             const div = document.createElement('div');
@@ -502,6 +564,10 @@
         function closeLetter() {
             document.getElementById('letterModal').style.display = 'none';
         }
+        function playPerfectSong() {
+    document.getElementById('bgMusic').pause();
+    document.getElementById('perfectSong').play();
+}
     </script>
 </body>
 </html>
