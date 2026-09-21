@@ -17,6 +17,8 @@
             --card-bg: rgba(249, 244, 232, 0.85);
             --envelope-bg: white;
             --body-bg: linear-gradient(135deg, #fce4ec 0%, #f8d7e3 50%, #f9f4e8 100%);
+            --gold-yellow: #f1c40f;
+            --gold-accent: #d4ac0d;
         }
 
         body.dark-mode {
@@ -29,18 +31,18 @@
             --card-bg: rgba(30, 15, 20, 0.95);
             --envelope-bg: #3d1c26;
             --body-bg: #12050a;
+            --gold-yellow: #f39c12;
+            --gold-accent: #f1c40f;
         }
-        body.dark-mode #esHoy {
-    color: var(--text-color) !important;
-}
-body.dark-mode #esHoy * {
-    color: var(--text-color) !important;
-}
-body.dark-mode #esHoy button {
-    background: #ff4d7d !important;
-    color: white !important;
-}
-        
+
+        body.dark-mode #esHoy,
+        body.dark-mode #esHoy * {
+            color: var(--text-color) !important;
+        }
+        body.dark-mode #esHoy button {
+            background: #ff4d7d !important;
+            color: white !important;
+        }
 
         /* RESET & SCROLL OCULTO */
         * {
@@ -63,6 +65,7 @@ body.dark-mode #esHoy button {
             min-height: 100vh;
             scroll-behavior: smooth;
             transition: background 0.5s ease;
+            position: relative;
         }
 
         /* ANIMACIONES */
@@ -156,6 +159,7 @@ body.dark-mode #esHoy button {
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
             position: relative;
+            z-index: 2;
         }
 
         section { 
@@ -173,11 +177,10 @@ body.dark-mode #esHoy button {
             line-height: 0.8;
         }
 
-        /* TEXTO EXTENDIDO Y FUENTE AJUSTADA */
         .body-text {
             font-family: 'Montserrat', sans-serif;
-            font-size: 15px; /* Tamaño solicitado */
-            line-height: 2.3; /* Más espaciado para extender visualmente */
+            font-size: 15px;
+            line-height: 2.3;
             text-align: justify;
             margin-bottom: 45px;
             font-weight: 300;
@@ -314,14 +317,103 @@ body.dark-mode #esHoy button {
         }
         .close-letter:hover { transform: rotate(90deg); }
 
+        /* ==========================================
+           ESTILOS Y PÉTALOS: 21 DE SEPTIEMBRE
+           ========================================== */
+        .yellow-accent-box {
+            background: rgba(255, 253, 238, 0.85);
+            border: 2px dashed var(--gold-yellow, #f1c40f);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(241, 196, 15, 0.18);
+            backdrop-filter: blur(5px);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        body.dark-mode .yellow-accent-box {
+            background: rgba(45, 35, 10, 0.85);
+            border-color: var(--gold-yellow, #f1c40f);
+        }
+
+        .yellow-accent-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(241, 196, 15, 0.35);
+        }
+
+        .flower-icon-float {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 42px;
+            margin: 20px 0;
+        }
+
+        .flower-icon-float span {
+            display: inline-block;
+            animation: gentleFloat 3s ease-in-out infinite alternate;
+        }
+
+        .flower-icon-float span:nth-child(2) { animation-delay: 0.6s; }
+        .flower-icon-float span:nth-child(3) { animation-delay: 1.2s; }
+
+        @keyframes gentleFloat {
+            0% { transform: translateY(0) rotate(-8deg); }
+            100% { transform: translateY(-14px) rotate(8deg); }
+        }
+
+        .flower-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        /* ANIMACIÓN DE PÉTALOS AMARILLOS CAYENDO */
+        #petalsContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+            display: none;
+        }
+
+        #petalsContainer .petal {
+            position: absolute;
+            top: -10%;
+            background: linear-gradient(135deg, #f1c40f 0%, #f39c12 70%, #d4ac0d 100%);
+            border-radius: 80% 0 80% 0;
+            opacity: 0.85;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            animation: petalFall linear infinite;
+        }
+
+        @keyframes petalFall {
+            0% {
+                transform: translateY(0) rotate(0deg) translateX(0);
+                opacity: 0.9;
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) translateX(50px);
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg) translateX(-30px);
+                opacity: 0;
+            }
+        }
+
         footer {
             text-align: center;
             margin-top: 100px;
             padding: 80px 20px;
-            border-top: 1px dashed var(--rose-accent);
+            border-top: 1px dashed var(--rose-accent, #e17055);
             font-family: 'Dancing Script';
             font-size: 32px;
-            color: var(--romance-red);
+            color: var(--romance-red, #d63031);
             line-height: 1.5;
         }
 
@@ -330,48 +422,366 @@ body.dark-mode #esHoy button {
             .nav-link { font-size: 9px; padding: 8px 12px; }
             .main-canvas { padding: 30px 20px; }
         }
+
+        /* ==========================================
+           SPLASH DE TRANSICIÓN, DESTELLOS Y PARTÍCULAS
+           ========================================== */
+        .splash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(18, 5, 10, 0.88);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .splash-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .splash-content {
+            position: relative;
+            text-align: center;
+            color: var(--gold-yellow, #f1c40f);
+        }
+
+        .splash-flower {
+            font-size: 90px;
+            animation: splashPulse 0.8s ease-in-out infinite alternate;
+        }
+
+        @keyframes splashPulse {
+            from { transform: scale(0.9); }
+            to { transform: scale(1.18); }
+        }
+
+        /* Partícula base */
+        .destello {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #facc15;
+            box-shadow: 0 0 10px #facc15, 0 0 20px #eab308;
+            pointer-events: none;
+            z-index: 10;
+            animation: destelloBrote 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Variante estrella */
+        .destello.estrella {
+            width: 14px;
+            height: 14px;
+            border-radius: 0;
+            background: #fef08a;
+            clip-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0% 50%, 35% 35%);
+        }
+
+        /* Colores para Modo Oscuro / Noche */
+        body.dark-mode .destello {
+            background: #ffff00 !important;
+            box-shadow: 0 0 12px #ffff00, 0 0 25px #ffff00, 0 0 40px #ffe600 !important;
+        }
+
+        body.dark-mode .destello.estrella {
+            background: #ffffff !important;
+        }
+
+        /* Movimiento radial */
+        @keyframes destelloBrote {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            40% {
+                opacity: 1;
+                transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.4) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(calc(-50% + var(--tx) * 1.3), calc(-50% + var(--ty) * 1.3)) scale(0.1) rotate(360deg);
+            }
+        }
+
+        /* ==========================================
+           TEMA AMARILLO DINÁMICO AL ACTIVAR FLORES
+           ========================================== */
+        body.theme-flores {
+            background: linear-gradient(135deg, #fef9c3 0%, #fef08a 50%, #fffbeb 100%) !important;
+        }
+
+        body.dark-mode.theme-flores {
+            background: #121005 !important;
+            background-image: radial-gradient(circle at 50% 20%, #2a2206 0%, #121005 85%) !important;
+            color: #fef08a !important;
+
+            --rose-accent: #eab308;
+            --romance-red: #facc15;
+        }
+
+        #nav-flores.active {
+            background: var(--gold-yellow, #f1c40f) !important;
+            border-color: var(--gold-yellow, #f1c40f) !important;
+            color: #1c1917 !important;
+            font-weight: bold;
+        }
+
+        body.theme-flores .btn-float {
+            background: var(--gold-yellow, #f1c40f) !important;
+            color: #1c1917 !important;
+        }
+
+        body.dark-mode.theme-flores .main-canvas,
+        body.dark-mode.theme-flores .card,
+        body.dark-mode.theme-flores .yellow-accent-box {
+            background: rgba(28, 23, 7, 0.88) !important;
+            border-color: #ca8a04 !important;
+            box-shadow: 0 10px 30px rgba(234, 179, 8, 0.15) !important;
+            color: #fef08a !important;
+        }
+
+        body.dark-mode.theme-flores footer {
+            border-top: 1px dashed #ca8a04 !important;
+            color: #facc15 !important;
+        }
+
+        body.dark-mode.theme-flores .btn-float {
+            background: #facc15 !important;
+            color: #121005 !important;
+            box-shadow: 0 0 15px rgba(250, 204, 21, 0.4) !important;
+        }
+
+        body.dark-mode.theme-flores #nav-flores.active {
+            background: #facc15 !important;
+            border-color: #facc15 !important;
+            color: #121005 !important;
+            box-shadow: 0 0 12px rgba(250, 204, 21, 0.5) !important;
+        }
+
+        /* ==========================================
+           ESTILOS BOTÓN SORPRESA Y FLOR REVELADA
+           ========================================== */
+        .flower-surprise-wrapper {
+            text-align: center;
+            margin: 40px 0 30px 0;
+        }
+
+        .btn-surprise {
+            background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
+            color: #1c1917;
+            border: none;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(241, 196, 15, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: inherit;
+        }
+
+        .btn-surprise:hover {
+            transform: scale(1.08) translateY(-3px);
+            box-shadow: 0 12px 30px rgba(241, 196, 15, 0.6);
+        }
+
+        .btn-surprise:active {
+            transform: scale(0.96);
+        }
+
+        /* Ocultar contenedor antes del clic */
+        .flower-container.hidden {
+            display: none;
+        }
+
+        /* Mostrar la flor con flex al activar */
+        .flower-container.active {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            min-height: 320px;
+            margin-top: 30px;
+        }
+
+        /* Activar la animación de crecimiento e inclinación solo al hacer clic */
+        .flower-container.active .flower-wrapper {
+            animation: flowerGrow 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+                       flowerSway 4s ease-in-out infinite alternate 1.8s;
+        }
+
+        /* DIBUJO Y ESTRUCTURA DE LA FLOR CSS */
+        .flower-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform-origin: bottom center;
+        }
+
+        .flower-head {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .flower-center {
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle, #5c3a21 0%, #3a2211 70%, #241408 100%);
+            border-radius: 50%;
+            z-index: 5;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 0 15px rgba(241, 196, 15, 0.5);
+            border: 2px dashed #8b5a2b;
+        }
+
+        .petals {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .petals .petal {
+            position: absolute;
+            width: 30px;
+            height: 85px;
+            background: linear-gradient(to top, #f39c12, #f1c40f, #ffeb3b);
+            border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+            transform-origin: bottom center;
+            transform: rotate(var(--deg)) translateY(-40px);
+            box-shadow: 0 0 12px rgba(241, 196, 15, 0.5);
+            top: auto;
+            left: auto;
+            opacity: 1;
+            animation: none;
+        }
+
+        .flower-stem {
+            width: 14px;
+            height: 190px;
+            background: linear-gradient(to right, #2e7d32, #4caf50, #1b5e20);
+            border-radius: 6px;
+            position: relative;
+            margin-top: -10px;
+            z-index: 1;
+        }
+
+        .flower-leaf {
+            position: absolute;
+            width: 55px;
+            height: 28px;
+            background: linear-gradient(to right, #388e3c, #66bb6a);
+            top: 60px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .leaf-left {
+            left: -50px;
+            transform: rotate(-25deg);
+            border-radius: 0 100px 0 100px;
+        }
+
+        .leaf-right {
+            right: -50px;
+            transform: rotate(25deg);
+            border-radius: 100px 0 100px 0;
+            top: 105px;
+        }
+
+        @keyframes flowerGrow {
+            0% {
+                transform: scale(0) translateY(100px);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes flowerSway {
+            0% {
+                transform: rotate(-4deg);
+            }
+            100% {
+                transform: rotate(4deg);
+            }
+        }
     </style>
 </head>
 <body>
 
-   <div class="floating-controls">
-    <button class="btn-float" onclick="toggleDarkMode()" id="modeBtn" title="Cambiar Modo">🌙</button>
-    <button class="btn-float" onclick="toggleMusic()" id="musicBtn" title="Cristina Yatra">🎵</button>
-</div>
+    <!-- OVERLAY / SPLASH DE FLORES AMARILLAS -->
+    <div id="splash-flores" class="splash-overlay">
+        <div class="splash-content">
+            <div class="splash-flower">🌻</div>
+            <h2 style="font-family: 'Dancing Script', cursive; font-size: 42px; color: #f1c40f; margin-top: 15px; margin-bottom: 0;">
+                ¡Flores Amarillas para ti!
+            </h2>
+        </div>
+    </div>
 
+    <!-- CONTENEDOR DE PÉTALOS CAYENDO -->
+    <div id="petalsContainer"></div>
+
+    <div class="floating-controls">
+        <button class="btn-float" onclick="toggleDarkMode()" id="modeBtn" title="Cambiar Modo">🌙</button>
+        <button class="btn-float" onclick="toggleMusic()" id="musicBtn" title="Cristina - Sebastián Yatra">🎵</button>
+    </div>
+
+    <!-- MÚSICA DE FONDO PRINCIPAL -->
     <audio id="bgMusic" loop>
-    <source src="https://dl.dropboxusercontent.com/scl/fi/bz43xatwib7r6q5rr9ncf/Sebastian-Yatra-Cristina-Letra-LatinHype.mp3?rlkey=xrgscx3bz0xvyy5viwpgysdcb&raw=1" type="audio/mpeg">
-</audio>
+        <source src="https://dl.dropboxusercontent.com/scl/fi/bz43xatwib7r6q5rr9ncf/Sebastian-Yatra-Cristina-Letra-LatinHype.mp3?rlkey=xrgscx3bz0xvyy5viwpgysdcb&raw=1" type="audio/mpeg">
+    </audio>
 
-<!-- 🎵 ED SHEERAN (NUEVO BOTÓN FLOTANTE) -->
-<audio id="perfectSong" loop>
-    <source src="https://dl.dropboxusercontent.com/scl/fi/t3lgns0w67i0sqtlnt8wo/ED-SHEERAN-PERFECT-instrumental-JOEL-MIRANDA.mp3?rlkey=vcw5xb0aa9gzuhd5k5gk6rx67&raw=1" type="audio/mpeg">
-</audio>
+    <!-- MÚSICA DE ED SHEERAN -->
+    <audio id="perfectSong" loop>
+        <source src="https://dl.dropboxusercontent.com/scl/fi/t3lgns0w67i0sqtlnt8wo/ED-SHEERAN-PERFECT-instrumental-JOEL-MIRANDA.mp3?rlkey=vcw5xb0aa9gzuhd5k5gk6rx67&raw=1" type="audio/mpeg">
+    </audio>
 
-
+    <!-- NAVEGACIÓN -->
     <nav class="nav-menu">
         <a class="nav-link active" onclick="showSection('inicio')" id="nav-inicio">El Primer Año</a>
         <a class="nav-link" onclick="showSection('ella')" id="nav-ella">Tú</a>
         <a class="nav-link" onclick="showSection('nosotros')" id="nav-nosotros">Nosotros</a>
         <a class="nav-link" onclick="showSection('actualidad')" id="nav-actualidad">Presente</a>
+        <a class="nav-link" onclick="showSection('flores')" id="nav-flores">Flores Amarillas 🌻</a>
         <a class="nav-link" onclick="showSection('futuro')" id="nav-futuro">Futuro</a>
         <a class="nav-link" onclick="showSection('pensamientos')" id="nav-pensamientos">Cartas</a>
         <a class="nav-link" onclick="showSection('esHoy')" id="nav-esHoy">Es Hoy</a>
-
     </nav>
 
     <div class="main-canvas">
-     <section id="esHoy">
-    <h2 class="title-name">Carta del 7 de Enero</h2>
-    <div class="body-text" style="background: var(--card-bg); padding: 40px; border-radius: 25px; border: 4px solid var(--romance-red); margin: 30px 0;">
-        <div style="text-align: center; margin-bottom: 30px;">
-            <h3 style="font-family: 'Dancing Script', cursive; font-size: 32px; color: var(--romance-red);">💕 Feliz Aniversario💕</h3>
-            <button onclick="playPerfectSong()" style="background: var(--romance-red); color: white; padding: 20px 40px; border: none; border-radius: 30px; font-size: 18px; cursor: pointer; box-shadow: 0 10px 30px rgba(142,14,47,0.4); width: 100%; max-width: 350px;">
-                 Presiona aquí antes de leer
-            </button>
-        </div>
-        
-        <div class="body-text">
+
+        <!-- SECCIÓN: CARTA DEL 7 DE ENERO -->
+        <section id="esHoy">
+            <h2 class="title-name">Carta del 7 de Enero</h2>
+            <div class="body-text" style="background: var(--card-bg); padding: 40px; border-radius: 25px; border: 4px solid var(--romance-red); margin: 30px 0;">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h3 style="font-family: 'Dancing Script', cursive; font-size: 32px; color: var(--romance-red);">💕 Feliz Aniversario 💕</h3>
+                    <button onclick="playPerfectSong()" id="perfectBtn" style="background: var(--romance-red); color: white; padding: 20px 40px; border: none; border-radius: 30px; font-size: 18px; cursor: pointer; box-shadow: 0 10px 30px rgba(142,14,47,0.4); width: 100%; max-width: 350px;">
+                         Presiona aquí antes de leer
+                    </button>
+                </div>
+                
+                <div class="body-text">
 Mi amor…. 
 Desde hace días vengo dándole vueltas a todo lo que hemos vivido, pero hoy fue distinto: fue como si cada 
 recuerdo, cada risa, cada pelea y cada reconciliación se me vinieran encima de golpe. Me di cuenta de que, si 
@@ -445,10 +855,12 @@ favorita y mi historia preferida. Gracias por enseñarme que el amor no siempre 
 da con el corazón abierto y se cuida entre dos, se vuelve lo más valioso que uno puede tener en esta vida. 
 Y sí, falta nada para nuestro día, y quiero celebrarlo contigo no solo como el fin de un primer año, sino como 
 el inicio de todo lo que aún nos falta por vivir juntos. 
-Con todo mi amor, siempre tuyo </div>
-    </div>
-</section>
-        
+Con todo mi amor, siempre tuyo
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: EL PRIMER AÑO -->
         <section id="inicio" class="active">
             <div style="text-align: center; margin-bottom: 60px;">
                 <div style="border: 1px solid var(--romance-red); display: inline-block; padding: 8px 30px; border-radius: 40px; font-size: 14px; letter-spacing: 4px; font-family: 'Montserrat';">7 DE ENERO DE 2026</div>
@@ -463,6 +875,7 @@ Con todo mi amor, siempre tuyo </div>
             </div>
         </section>
 
+        <!-- SECCIÓN: TÚ -->
         <section id="ella">
             <h2 class="title-name">La Mujer de mi Vida</h2>
             <div class="body-text">
@@ -472,15 +885,16 @@ Con todo mi amor, siempre tuyo </div>
             </div>
         </section>
 
+        <!-- SECCIÓN: NOSOTROS -->
         <section id="nosotros">
             <h2 class="title-name">Nuestra Historia</h2>
             <div class="gallery-grid">
-                <img src="https://www.dropbox.com/scl/fi/tq8mgaeqbhvacthy7ftiy/Foto1.jpg?rlkey=pef663j7f93t0txm67k69xkqm&raw=1">
-                <img src="https://www.dropbox.com/scl/fi/59bvqdcmfumdqw03of5e4/Foto2.jpg?rlkey=8o4d92tcppnu9rg3zgnhjdhxi&raw=1">
-                <img src="https://www.dropbox.com/scl/fi/6isprls0dkx3lffvez6xr/Foto3.jpg?rlkey=6hlnk9bt2o29hjumm3c1u6p83&raw=1">
-                <img src="https://www.dropbox.com/scl/fi/1rh45ljdayzu4lxrsn8ix/Foto4.jpg?rlkey=lggdirhrc8b8nhmiwg1x8bvv1&raw=1">
-                <img src="https://www.dropbox.com/scl/fi/391c62f2f5aw52lihlzfv/Foto5.jpg?rlkey=ltt0nqcfdwrefoo4b8pttnuvy&raw=1">
-                <img src="https://www.dropbox.com/scl/fi/poiqxfvzdkqavaqzdgw68/Foto6.jpg?rlkey=3o3mwrehaukdy79i5zx42ks6r&raw=1">
+                <img src="https://www.dropbox.com/scl/fi/tq8mgaeqbhvacthy7ftiy/Foto1.jpg?rlkey=pef663j7f93t0txm67k69xkqm&raw=1" alt="Foto 1">
+                <img src="https://www.dropbox.com/scl/fi/59bvqdcmfumdqw03of5e4/Foto2.jpg?rlkey=8o4d92tcppnu9rg3zgnhjdhxi&raw=1" alt="Foto 2">
+                <img src="https://www.dropbox.com/scl/fi/6isprls0dkx3lffvez6xr/Foto3.jpg?rlkey=6hlnk9bt2o29hjumm3c1u6p83&raw=1" alt="Foto 3">
+                <img src="https://www.dropbox.com/scl/fi/1rh45ljdayzu4lxrsn8ix/Foto4.jpg?rlkey=lggdirhrc8b8nhmiwg1x8bvv1&raw=1" alt="Foto 4">
+                <img src="https://www.dropbox.com/scl/fi/391c62f2f5aw52lihlzfv/Foto5.jpg?rlkey=ltt0nqcfdwrefoo4b8pttnuvy&raw=1" alt="Foto 5">
+                <img src="https://www.dropbox.com/scl/fi/poiqxfvzdkqavaqzdgw68/Foto6.jpg?rlkey=3o3mwrehaukdy79i5zx42ks6r&raw=1" alt="Foto 6">
             </div>
             <div class="body-text">
                 <p>Nuestra historia no es un cuento de hadas perfecto, es algo mucho mejor: es una historia real. Una historia construida con base en la honestidad, el respeto y una química que desafía cualquier lógica. Somos <span class="highlight">Piscis y Libra</span>, un encuentro de mundos que muchos dirían opuestos, pero que en nosotros han encontrado la armonía más absoluta. Tú pones la paz donde yo traigo el caos, y yo pongo el fuego donde tú traes la calma.</p>
@@ -488,6 +902,7 @@ Con todo mi amor, siempre tuyo </div>
             </div>
         </section>
 
+        <!-- SECCIÓN: PRESENTE -->
         <section id="actualidad">
             <h2 class="title-name">Hoy y Ahora</h2>
             <div class="timer-container">
@@ -502,6 +917,93 @@ Con todo mi amor, siempre tuyo </div>
             </div>
         </section>
 
+        <!-- SECCIÓN: 21 DE SEPTIEMBRE - FLORES AMARILLAS -->
+        <section id="flores">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div style="border: 1px solid var(--gold-accent); display: inline-block; padding: 8px 30px; border-radius: 40px; font-size: 13px; letter-spacing: 4px; font-family: 'Montserrat'; color: var(--gold-accent); font-weight: 600;">
+                    21 DE SEPTIEMBRE
+                </div>
+                <h2 class="title-name" style="color: var(--gold-accent);">Flores Amarillas</h2>
+                
+                <div class="flower-icon-float">
+                    <span>🌻</span>
+                    <span>🌼</span>
+                    <span>🌻</span>
+                </div>
+            </div>
+
+            <!-- CONTENEDOR DEL BOTÓN SORPRESA Y LA FLOR REVELADA -->
+            <div class="flower-surprise-wrapper">
+                <button id="btnRevelarFlor" class="btn-surprise" onclick="revelarFlorAmarilla()">
+                    ¿A poco creíste que no tendrías flores? 🌻
+                </button>
+
+                <div id="flowerContainer" class="flower-container hidden">
+                    <div class="flower-wrapper">
+                        <!-- Cabeza de la flor -->
+                        <div class="flower-head">
+                            <div class="flower-center"></div>
+                            <div class="petals">
+                                <div class="petal" style="--deg: 0deg;"></div>
+                                <div class="petal" style="--deg: 30deg;"></div>
+                                <div class="petal" style="--deg: 60deg;"></div>
+                                <div class="petal" style="--deg: 90deg;"></div>
+                                <div class="petal" style="--deg: 120deg;"></div>
+                                <div class="petal" style="--deg: 150deg;"></div>
+                                <div class="petal" style="--deg: 180deg;"></div>
+                                <div class="petal" style="--deg: 210deg;"></div>
+                                <div class="petal" style="--deg: 240deg;"></div>
+                                <div class="petal" style="--deg: 270deg;"></div>
+                                <div class="petal" style="--deg: 300deg;"></div>
+                                <div class="petal" style="--deg: 330deg;"></div>
+                            </div>
+                        </div>
+                        <!-- Tallo y Hojas -->
+                        <div class="flower-stem">
+                            <div class="flower-leaf leaf-left"></div>
+                            <div class="flower-leaf leaf-right"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CAJA PRINCIPAL -->
+            <div class="yellow-accent-box">
+                <h3 style="font-family: 'Dancing Script', cursive; font-size: 36px; color: var(--gold-accent); margin-top: 0; text-align: center;">
+                    Flores Especiales para el Amor de mi Vida
+                </h3>
+                <div class="body-text" style="margin-bottom: 0;">
+                    Hoy 21 de septiembre la tradición dice que se regalan flores amarillas como símbolo de un amor puro, lleno de luz, juventud y la promesa de pasar una vida entera juntos. Las flores del campo pueden marchitarse con el tiempo, pero este jardín digital y cada una de las palabras que te escribo aquí durarán para siempre. Este detalle es para recordarte que tu presencia llena de color y calidez todos mis días.
+                </div>
+            </div>
+
+            <!-- CUADRÍCULA DE TARJETAS -->
+            <div class="flower-grid">
+                <div class="yellow-accent-box" style="margin: 0;">
+                    <h4 style="font-family: 'Dancing Script', cursive; font-size: 28px; color: var(--gold-accent); margin-top: 0; text-align: center;">
+                        ✨ Tu Luz y Sonrisa
+                    </h4>
+                    <p class="body-text" style="font-size: 14px; line-height: 1.9; margin-bottom: 0; text-align: center;">
+                        El color amarillo simboliza el sol y la energía vital. Eso es exactamente lo que traes a mi vida: paz en el caos y una luz hermosa que borra cualquier día gris.
+                    </p>
+                </div>
+
+                <div class="yellow-accent-box" style="margin: 0;">
+                    <h4 style="font-family: 'Dancing Script', cursive; font-size: 28px; color: var(--gold-accent); margin-top: 0; text-align: center;">
+                        💛 Flores Eternas
+                    </h4>
+                    <p class="body-text" style="font-size: 14px; line-height: 1.9; margin-bottom: 0; text-align: center;">
+                        Que este 21 de septiembre sea otra hermosa excusa para recordarte que te elijo hoy, mañana y en cada primavera de nuestras vidas. ¡Te amo con todo mi corazón!
+                    </p>
+                </div>
+            </div>
+
+            <span class="handwritten" style="color: var(--gold-accent); margin-top: 40px;">
+                "Para la chica que hace que todos mis días florezcan."
+            </span>
+        </section>
+
+        <!-- SECCIÓN: FUTURO -->
         <section id="futuro">
             <h2 class="title-name">Nuestro Mañana</h2>
             <div class="body-text">
@@ -511,6 +1013,7 @@ Con todo mi amor, siempre tuyo </div>
             </div>
         </section>
 
+        <!-- SECCIÓN: CARTAS -->
         <section id="pensamientos">
             <h2 class="title-name">Cartas al Alma</h2>
             <div class="envelope-container" id="gridCartas"></div>
@@ -522,6 +1025,7 @@ Con todo mi amor, siempre tuyo </div>
         </footer>
     </div>
 
+    <!-- MODAL DE CARTAS -->
     <div class="letter-modal" id="letterModal">
         <div class="letter-content">
             <span class="close-letter" onclick="closeLetter()">&times;</span>
@@ -530,37 +1034,87 @@ Con todo mi amor, siempre tuyo </div>
     </div>
 
     <script>
-        const audio = document.getElementById('bgMusic');
-        const musicBtn = document.getElementById('musicBtn');
-
-        // Lógica de música: Solo suena al darle clic
-       // 🎵 ED SHEERAN - IGUAL QUE CRISTINA
-function togglePerfect() {
-    const perfectAudio = document.getElementById('perfectSong');
-    const perfectBtn = document.getElementById('perfectBtn');
-    
-    if (perfectAudio.paused) {
-        perfectAudio.play();
-        perfectBtn.innerText = "⏸️";
-        perfectBtn.classList.add('active');
-        perfectBtn.style.animation = "floating 2s infinite ease-in-out";
-        document.getElementById('bgMusic').pause(); // Pausar Cristina
-    } else {
-        perfectAudio.pause();
-        perfectBtn.innerText = "💕";
-        perfectBtn.classList.remove('active');
-        perfectBtn.style.animation = "none";
-    }
-}
-
-
-        // Navegación suave
+        // Navegación entre secciones y control del efecto de pétalos / destellos
         function showSection(id) {
+            // Si hace clic en Flores Amarillas, muestra el splash especial con destellos
+            if (id === 'flores') {
+                const splash = document.getElementById('splash-flores');
+                if (splash && !splash.classList.contains('active')) {
+                    splash.classList.add('active');
+                    dispararDestellos();
+
+                    setTimeout(() => {
+                        ejecutarCambioSeccion(id);
+                    }, 500);
+
+                    setTimeout(() => {
+                        splash.classList.remove('active');
+                    }, 1200);
+                    return;
+                }
+            }
+            ejecutarCambioSeccion(id);
+        }
+
+        function ejecutarCambioSeccion(id) {
             document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            document.getElementById('nav-' + id).classList.add('active');
+            
+            const targetSection = document.getElementById(id);
+            const targetNav = document.getElementById('nav-' + id);
+
+            if (targetSection) targetSection.classList.add('active');
+            if (targetNav) targetNav.classList.add('active');
+            
             window.scrollTo({top: 0, behavior: 'smooth'});
+
+            // Activar tema amarillo y pétalos solo en la sección de Flores Amarillas
+            if (id === 'flores') {
+                document.body.classList.add('theme-flores');
+                startPetals();
+            } else {
+                document.body.classList.remove('theme-flores');
+                stopPetals();
+            }
+        }
+
+        // Lógica para crear y animar pétalos amarillos flotantes
+        let petalInterval = null;
+
+        function startPetals() {
+            const container = document.getElementById('petalsContainer');
+            container.style.display = 'block';
+            if (petalInterval) return;
+
+            petalInterval = setInterval(() => {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                
+                // Tamaño y posición aleatorios
+                const size = Math.random() * 15 + 10;
+                petal.style.width = size + 'px';
+                petal.style.height = (size * 1.4) + 'px';
+                petal.style.left = Math.random() * 100 + 'vw';
+                
+                // Duración de caída
+                const duration = Math.random() * 4 + 4;
+                petal.style.animationDuration = duration + 's';
+
+                container.appendChild(petal);
+
+                // Eliminar pétalo cuando termina su animación
+                setTimeout(() => {
+                    petal.remove();
+                }, duration * 1000);
+            }, 300);
+        }
+
+        function stopPetals() {
+            clearInterval(petalInterval);
+            petalInterval = null;
+            const container = document.getElementById('petalsContainer');
+            container.innerHTML = '';
+            container.style.display = 'none';
         }
 
         // Modo Oscuro
@@ -569,57 +1123,74 @@ function togglePerfect() {
             document.getElementById('modeBtn').innerText = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
         }
 
-        // Contador de tiempo
+        // Reproductor Música Principal (Cristina)
+        function toggleMusic() {
+            const audio = document.getElementById('bgMusic');
+            const musicBtn = document.getElementById('musicBtn');
+            const perfectSong = document.getElementById('perfectSong');
+
+            if (audio.paused) {
+                perfectSong.pause();
+                audio.play();
+                musicBtn.innerText = "⏸️";
+                musicBtn.classList.add('active');
+            } else {
+                audio.pause();
+                musicBtn.innerText = "🎵";
+                musicBtn.classList.remove('active');
+            }
+        }
+
+        // Reproductor Música Ed Sheeran (Perfect)
+        function playPerfectSong() {
+            const perfectSong = document.getElementById('perfectSong');
+            const bgMusic = document.getElementById('bgMusic');
+            const musicBtn = document.getElementById('musicBtn');
+            const perfectBtn = document.getElementById('perfectBtn');
+
+            if (perfectSong.paused) {
+                bgMusic.pause();
+                musicBtn.innerText = "🎵";
+                musicBtn.classList.remove('active');
+                
+                perfectSong.play();
+                if(perfectBtn) perfectBtn.innerText = "⏸️ Pausar Música";
+            } else {
+                perfectSong.pause();
+                if(perfectBtn) perfectBtn.innerText = " Presiona aquí antes de leer";
+            }
+        }
+
+        // Contador de Tiempo
         const startDate = new Date("Jan 7, 2025 00:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const diff = now - startDate;
+            
             document.getElementById('d').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
             document.getElementById('h').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             document.getElementById('m').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             document.getElementById('s').innerText = Math.floor((diff % (1000 * 60)) / 1000);
         }, 1000);
 
-        // Cartas Extendidas
+        // Objeto con las Cartas
         const letters = {
-    "Nuestra Carta": "Mi amor, me detengo a pensar en lo afortunado que soy por haber coincidido contigo en este vasto universo. Este año ha sido la prueba de que cuando dos personas se quieren de verdad, el mundo entero conspira a su favor. Te escribo esto para que guardes estas palabras como un amuleto: mi amor por ti es un compromiso eterno, una elección que renuevo con cada amanecer. Eres mi hogar, mi paz y mi mayor orgullo.",
-    "Si me necesitas": "No importa la distancia, la hora ni lo que esté pasando en mi vida. Si alguna vez sientes que el suelo se mueve bajo tus pies, búscame. Seré tu ancla, tu refugio y el silencio que necesitas para sanar. Mi amor por ti incluye cuidarte en tus momentos de mayor fragilidad. Siempre estaré aquí, a un suspiro de distancia, listo para sostenerte.",
-    "Si me extrañas": "Cierra los ojos y busca mi mano en tu memoria. Recuerda el calor de nuestros abrazos y ese 21 de diciembre donde el destino nos selló. La distancia física no es nada frente a la conexión de nuestras almas. Estoy contigo en cada pensamiento, en cada canción que escuchas y en cada latido de tu corazón. No te sientas sola, porque habitas en mí.",
-    "Tras un mal día": "Suelta toda la carga que traes sobre los hombros. Eres una mujer increíblemente fuerte, pero aquí, conmigo, tienes permiso para estar cansada. Deja que mis caricias borren el estrés del día. Mañana el sol brillará de nuevo, pero por ahora, descansa en el refugio de mi amor. Todo estará bien porque nos tenemos el uno al otro.",
-    "Cuando No Puedas Dormir": "Hola, mi amor. Me imagino que si estás leyendo esto es porque el sueño te está ganando la batalla y tu cabecita no deja de dar vueltas. Me duele un poquito pensar que estás ahí desvelada, quizás dándole vueltas a cosas que pesan o simplemente con los ojos abiertos esperando a que el cansancio llegue. Solo quería escribirte esto para decirte que, aunque no esté ahí físicamente para darte mimos o dejar que te apoyes en mi pecho, mi corazón está pegadito al tuyo. A veces la noche se hace muy larga y los pensamientos se vuelven más grandes de lo que realmente son, pero no dejes que te asusten, amor. Eres la mujer más increíble que conozco y tienes una fuerza que ni tú misma te crees. Así que intenta soltar un poquito los hombros, relaja la cara y deja que el colchón te sostenga. No tienes que cargar con el mundo entero ahora mismo; mañana yo te ayudo a cargar lo que sea necesario, pero por ahora, solo intenta ser tú, en calma. Me encantaría estar ahí para acariciarte el pelo, para besarte la frente y decirte bajito que todo va a estar bien, porque de verdad lo va a estar. Quédate tranquila pensando en lo mucho que te quiero y en todas las cosas bonitas que nos faltan por vivir. Imagínate que estoy ahí abrazándote fuerte, de esa forma en la que parece que el tiempo se detiene y nada malo puede pasar. Siente el calor de mi abrazo y deja que ese pensamiento sea lo único que te acompañe en este silencio. Sé que a veces el silencio de la madrugada se siente un poco pesado, pero intenta verlo como un espacio solo para nosotros, donde nadie más puede entrar. No pienses en lo que tienes que hacer mañana, ni en lo que no alcanzaste a terminar hoy. Todo eso está en pausa ahora. Lo único real es este momento y lo mucho que te extraño. Me gusta pensar que, si te concentras mucho, puedes sentir mis besos en tus párpados para ayudarte a que se cierren de a poquito, con la suavidad de quien sabe que tiene un tesoro entre sus manos. Cierra los ojos sin prisa, sin presionarte por dormir. Solo descansa, porque te mereces toda la paz del mundo. Deja que tu respiración se vuelva lenta, imagínate que estamos en nuestro lugar favorito, ese donde el ruido de afuera no importa. Mañana cuando despiertes, aquí voy a estar para ti, como siempre, listo para recordarte lo especial que eres y para acompañarte en lo que venga. Duerme tranquila, amor mío, que yo te cuido desde aquí. Te amo con todo lo que soy, descansa mi vida.",
-    "Sueño": "Cuando No Puedas Dormir Amor, sé que a veces la noche se siente un poco más grande de lo normal y que, por más que intentas cerrar los ojos, tu mente prefiere quedarse despierta recordándote cosas o simplemente haciéndote sentir que el descanso está lejos. Me gustaría estar ahí ahora mismo para apagar la luz, quitarte el celular de las manos y envolverte en mis brazos hasta que sientas que no hay nada en el mundo de qué preocuparse. Me encantaría que pudieras verte a través de mis ojos en este momento, para que entendieras que no hay razón para estar intranquila, porque eres lo más valioso que tengo y siempre voy a estar aquí para cuidarte. Intenta no pelear contra ese desvelo; a veces el cuerpo simplemente necesita un momento de quietud antes de rendirse al sueño. Imagínate que mi voz te está hablando muy bajito, contándote lo mucho que me gusta el futuro que estoy construyendo a tu lado y cómo cada detalle de tu personalidad me hace sentir que soy el hombre más afortunado. Piensa en esos momentos en los que nos reímos por tonterías o en esos besos que nos damos y que parecen curarlo todo. Deja que esos recuerdos te llenen el pecho de calorcito y vayan borrando cualquier rastro de ansiedad o cansancio mental que tengas ahora mismo. Me gusta imaginar que mis manos pueden alcanzar las tuyas a través de estas palabras, para darte ese apretón suave que te dice \"aquí estoy\". No te sientas mal por no poder dormir; la noche es sabia y a veces nos regala estos ratitos de soledad para recordar lo que de verdad importa. Y lo que importa para mí eres tú, tu paz y tu sonrisa. Quisiera ser ese refugio donde puedas soltar todas tus defensas, donde no tengas que ser fuerte ni perfecta, solo mi chica, descansando y dejándose querer. Así que respira profundo, siente cómo el aire entra y sale de tu cuerpo, y confía en que todo está en orden. El mañana va a llegar con su propia luz y sus propias soluciones, no tienes por qué adelantarte a él. Quédate un ratito más así, disfrutando de la suavidad de tus sábanas y del silencio, sabiendo que en algún lugar yo estoy pensando en ti con toda la ternura del mundo. Duerme con la seguridad de que eres profundamente amada y de que, pase lo que pase, mañana nos despertaremos para seguir escribiendo nuestra historia. Te amo más de lo que las palabras pueden explicar, descansa mi cielo.",
-    "Si estás enojado": "Perdón si el día se puso difícil o si cometimos un error. Antes de dejar que el orgullo gane, recuerda que somos un equipo. No permitas que un momento de frustración borre un año de felicidad. Déjame abrazarte fuerte hasta que el enojo se disuelva y podamos hablar con el corazón abierto como siempre lo hacemos.",
-    "Si te sientes inseguro": "Si el mundo te hace dudar, mírate a través de mis ojos. Verás a una mujer talentosa, valiente, con una luz que ilumina todo a su paso. Eres perfecta para mí, con tus virtudes y tus sombras. No hay nada en ti que no sea digno de admiración. Eres, y siempre serás, mi mayor tesoro. No lo olvides nunca.",
-    "Cuando lo logres": "¡Sabía que lo harías! Nunca dudé de tu capacidad ni de tu brillantez. Verte triunfar es como triunfar yo mismo. Celebro cada uno de tus pasos con una alegría que no me cabe en el pecho. Eres grande, mi amor, y este es solo el inicio de todos los éxitos que vamos a festejar juntos. ¡Estoy tan orgulloso de ti!",
-    "Si tienes miedo": "Aprieta mi mano con fuerza. El miedo es solo una sombra que se desvanece ante la luz de nuestra unión. No hay obstáculo que no podamos saltar si lo hacemos juntos. Seré tu escudo y tu valentía cuando sientas que te falta. Juntos somos invencibles, recuérdalo siempre.",
-    "Si dudas de mí": "Mírame profundamente a los ojos la próxima vez que nos veamos. En ellos encontrarás la verdad más pura: eres mi presente absoluto y el único futuro que deseo. Mi lealtad, mi respeto y mi corazón entero te pertenecen desde aquel primer beso. No hay nadie más, nunca lo habrá, porque tú eres mi todo.",
-    "Si estás bloqueado": "Tómate un respiro, mi vida. La inspiración no se ha ido, solo está descansando. Sal a caminar, mira el horizonte y recuerda que yo creo en tu talento infinitamente. No te presiones, el camino se aclarará pronto. Mientras tanto, deja que mi amor sea el espacio donde puedas simplemente ser.",
-    "7 de Enero 2027": "Esta carta es una cápsula del tiempo. La escribo hoy, en 2026, para recordarte que mi amor por ti no tiene fecha de caducidad. Seguiremos aquí, celebrando un año más de complicidad y crecimiento. Gracias por ser la protagonista de mi vida. Para cuando leas esto en el futuro, seguramente te amaré todavía más de lo que te amo hoy."
-}
-function playLetterMusic() {
-    const letterAudio = document.getElementById('letterMusic');
-    const bgMusic = document.getElementById('bgMusic');
-    
-    // Pausar música de fondo
-    bgMusic.pause();
-    
-    // Reproducir Ed Sheeran
-    letterAudio.play().catch(e => {
-        alert('🎵 Primero activa el botón flotante de música 🎵');
-    });
-}
+            "Nuestra Carta": "Mi amor, me detengo a pensar en lo afortunado que soy por haber coincidido contigo en este vasto universo. Este año ha sido la prueba de que cuando dos personas se quieren de verdad, el mundo entero conspira a su favor. Te escribo esto para que guardes estas palabras como un amuleto: mi amor por ti es un compromiso eterno, una elección que renuevo con cada amanecer. Eres mi hogar, mi paz y mi mayor orgullo.",
+            "Si me necesitas": "No importa la distancia, la hora ni lo que esté pasando en mi vida. Si alguna vez sientes que el suelo se mueve bajo tus pies, búscame. Seré tu ancla, tu refugio y el silencio que necesitas para sanar. Mi amor por ti incluye cuidarte en tus momentos de mayor fragilidad. Siempre estaré aquí, a un suspiro de distancia, listo para sostenerte.",
+            "Si me extrañas": "Cierra los ojos y busca mi mano en tu memoria. Recuerda el calor de nuestros abrazos y ese 21 de diciembre donde el destino nos selló. La distancia física no es nada frente a la conexión de nuestras almas. Estoy contigo en cada pensamiento, en cada canción que escuchas y en cada latido de tu corazón. No te sientas sola, porque habitas en mí.",
+            "Tras un mal día": "Suelta toda la carga que traes sobre los hombros. Eres una mujer increíblemente fuerte, pero aquí, conmigo, tienes permiso para estar cansada. Deja que mis caricias borren el estrés del día. Mañana el sol brillará de nuevo, pero por ahora, descansa en el refugio de mi amor. Todo estará bien porque nos tenemos el uno al otro.",
+            "Cuando No Puedas Dormir": "Hola, mi amor. Me imagino que si estás leyendo esto es porque el sueño te está ganando la batalla y tu cabecita no deja de dar vueltas. Me duele un poquito pensar que estás ahí desvelada, quizás dándole vueltas a cosas que pesan o simplemente con los ojos abiertos esperando a que el cansancio llegue. Solo quería escribirte esto para decirte que, aunque no esté ahí físicamente para darte mimos o dejar que te apoyes en mi pecho, mi corazón está pegadito al tuyo...",
+            "Sueño": "Amor, sé que a veces la noche se siente un poco más grande de lo normal y que, por más que intentas cerrar los ojos, tu mente prefiere quedarse despierta. Me gustaría estar ahí ahora mismo para apagar la luz, quitarte el celular de las manos y envolverte en mis brazos hasta que sientas que no hay nada en el mundo de qué preocuparse...",
+            "Si estás enojado": "Perdón si el día se puso difícil o si cometimos un error. Antes de dejar que el orgullo gane, recuerda que somos un equipo. No permitas que un momento de frustración borre un año de felicidad. Déjame abrazarte fuerte hasta que el enojo se disuelva y podamos hablar con el corazón abierto como siempre lo hacemos.",
+            "Si te sientes inseguro": "Si el mundo te hace dudar, mírate a través de mis ojos. Verás a una mujer talentosa, valiente, con una luz que ilumina todo a su paso. Eres perfecta para mí, con tus virtudes y tus sombras. No hay nada en ti que no sea digno de admiración. Eres, y siempre serás, mi mayor tesoro.",
+            "Cuando lo logres": "¡Sabía que lo harías! Nunca dudé de tu capacidad ni de tu brillantez. Verte triunfar es como triunfar yo mismo. Celebro cada uno de tus pasos con una alegría que no me cabe en el pecho. Eres grande, mi amor, y este es solo el inicio de todos los éxitos que vamos a festejar juntos.",
+            "Si tienes miedo": "Aprieta mi mano con fuerza. El miedo es solo una sombra que se desvanece ante la luz de nuestra unión. No hay obstáculo que no podamos saltar si lo hacemos juntos. Seré tu escudo y tu valentía cuando sientas que te falta. Juntos somos invencibles.",
+            "Si dudas de mí": "Mírame profundamente a los ojos la próxima vez que nos veamos. En ellos encontrarás la verdad más pura: eres mi presente absoluto y el único futuro que deseo. Mi lealtad, mi respeto y mi corazón entero te pertenecen desde aquel primer beso.",
+            "Si estás bloqueado": "Tómate un respiro, mi vida. La inspiración no se ha ido, solo está descansando. Sal a caminar, mira el horizonte y recuerda que yo creo en tu talento infinitamente. No te presiones, el camino se aclarará pronto.",
+            "7 de Enero 2027": "Esta carta es una cápsula del tiempo. La escribo hoy para recordarte que mi amor por ti no tiene fecha de caducidad. Seguiremos aquí, celebrando un año más de complicidad y crecimiento. Gracias por ser la protagonista de mi vida."
+        };
 
-// Cerrar carta restaurando música original
-function closeLetter() {
-    document.getElementById('letterModal').style.display = 'none';
-    document.getElementById('letterMusic').pause();
-    document.getElementById('letterMusic').currentTime = 0;
-    
-    // Restaurar Yatra si estaba activa
-    if (musicBtn && musicBtn.innerText === "⏸️") {
-        document.getElementById('bgMusic').play();
-    }
-}
+        // Generar los sobres de cartas dinámicamente
         const grid = document.getElementById('gridCartas');
         Object.keys(letters).forEach(key => {
             const div = document.createElement('div');
@@ -632,41 +1203,68 @@ function closeLetter() {
             grid.appendChild(div);
         });
 
+        // Cerrar modal de carta
         function closeLetter() {
             document.getElementById('letterModal').style.display = 'none';
         }
-        function toggleMusic() {
-    const audio = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicBtn');
 
-    if (audio.paused) {
-        audio.play();
-        musicBtn.innerText = "⏸️";
-        musicBtn.classList.add('active');
-        musicBtn.style.animation = "floating 2s infinite ease-in-out";
-    } else {
-        audio.pause();
-        musicBtn.innerText = "🎵";
-        musicBtn.classList.remove('active');
-        musicBtn.style.animation = "none";
-    }
-}
-        
-      function playPerfectSong() {
-    const perfectSong = document.getElementById('perfectSong');
-    const bgMusic = document.getElementById('bgMusic');
-    
-    if (perfectSong.paused) {
-        bgMusic.pause();
-        perfectSong.play();
-    } else {
-        perfectSong.pause();
-    }
-}
+        // GENERADOR DE DESTELLOS Y ESTRELLAS
+        function dispararDestellos() {
+            const contenedor = document.querySelector('.splash-content');
+            if (!contenedor) return;
+
+            const cantidad = 18;
+            for (let i = 0; i < cantidad; i++) {
+                const destello = document.createElement('div');
+                destello.classList.add('destello');
+
+                if (i % 2 === 0) {
+                    destello.classList.add('estrella');
+                }
+
+                const angulo = (i / cantidad) * 2 * Math.PI + (Math.random() * 0.4 - 0.2);
+                const distancia = Math.random() * 110 + 80;
+
+                const tx = Math.cos(angulo) * distancia;
+                const ty = Math.sin(angulo) * distancia;
+
+                destello.style.setProperty('--tx', `${tx}px`);
+                destello.style.setProperty('--ty', `${ty}px`);
+                destello.style.animationDelay = `${Math.random() * 0.15}s`;
+
+                contenedor.appendChild(destello);
+
+                setTimeout(() => {
+                    destello.remove();
+                }, 1000);
+            }
+        }
+
+        // LÓGICA DE LA FLOR REVELADA
+        function revelarFlorAmarilla() {
+            const btn = document.getElementById('btnRevelarFlor');
+            const flowerContainer = document.getElementById('flowerContainer');
+
+            if (!flowerContainer) return;
+
+            // 1. Mostrar el contenedor de la flor e iniciar animación
+            flowerContainer.classList.remove('hidden');
+            flowerContainer.classList.add('active');
+
+            // 2. Desvanecer suavemente el botón
+            btn.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            btn.style.opacity = '0';
+            btn.style.transform = 'scale(0.8)';
+            
+            setTimeout(() => {
+                btn.style.display = 'none';
+            }, 400);
+
+            // 3. Hacer scroll suave hasta la flor
+            setTimeout(() => {
+                flowerContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 150);
+        }
     </script>
 </body>
 </html>
-
-
-
-
