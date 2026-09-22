@@ -569,161 +569,102 @@
             box-shadow: 0 0 12px rgba(250, 204, 21, 0.5) !important;
         }
 
-        /* ==========================================
-           ESTILOS BOTÓN SORPRESA Y FLOR REVELADA
-           ========================================== */
-        .flower-surprise-wrapper {
-            text-align: center;
-            margin: 40px 0 30px 0;
-        }
+       /* ==========================================
+   ESTILOS BOTÓN SORPRESA Y FLOR REVELADA
+   ========================================== */
+.flower-surprise-wrapper {
+    text-align: center;
+    margin: 40px 0 30px 0;
+}
 
-        .btn-surprise {
-            background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
-            color: #1c1917;
-            border: none;
-            padding: 16px 32px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(241, 196, 15, 0.4);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-family: inherit;
-        }
+.btn-surprise {
+    background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
+    color: #1c1917;
+    border: none;
+    padding: 16px 32px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(241, 196, 15, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: inherit;
+}
 
-        .btn-surprise:hover {
-            transform: scale(1.08) translateY(-3px);
-            box-shadow: 0 12px 30px rgba(241, 196, 15, 0.6);
-        }
+.btn-surprise:hover {
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: 0 12px 30px rgba(241, 196, 15, 0.6);
+}
 
-        .btn-surprise:active {
-            transform: scale(0.96);
-        }
+.btn-surprise:active {
+    transform: scale(0.96);
+}
 
-        /* Ocultar contenedor antes del clic */
-        .flower-container.hidden {
-            display: none;
-        }
+/* Ocultar contenedor antes del clic */
+.flower-container.hidden {
+    display: none;
+}
 
-        /* Mostrar la flor con flex al activar */
-        .flower-container.active {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            min-height: 320px;
-            margin-top: 30px;
-        }
+/* Mostrar la flor con flex al activar */
+.flower-container.active {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 320px;
+    margin-top: 30px;
+}
 
-        /* Activar la animación de crecimiento e inclinación solo al hacer clic */
-        .flower-container.active .flower-wrapper {
-            animation: flowerGrow 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
-                       flowerSway 4s ease-in-out infinite alternate 1.8s;
-        }
+/* Activar la animación de crecimiento e inclinación solo al hacer clic */
+.flower-container.active .flower-wrapper {
+    animation: flowerGrow 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+               flowerSway 4s ease-in-out infinite alternate 1.8s;
+}
 
-        /* DIBUJO Y ESTRUCTURA DE LA FLOR CSS */
-        .flower-wrapper {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transform-origin: bottom center;
-        }
+/* ==========================================
+   ESTILOS FLOR SVG (REEMPLAZO)
+   ========================================== */
+.flower-container.hidden {
+    display: none;
+}
 
-        .flower-head {
-            position: relative;
-            width: 140px;
-            height: 140px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-        }
+.flower-container.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 320px;
+    margin-top: 30px;
+}
 
-        .flower-center {
-            width: 70px;
-            height: 70px;
-            background: radial-gradient(circle, #5c3a21 0%, #3a2211 70%, #241408 100%);
-            border-radius: 50%;
-            z-index: 5;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 0 15px rgba(241, 196, 15, 0.5);
-            border: 2px dashed #8b5a2b;
-        }
+.flower-svg {
+    width: 280px;
+    height: 380px;
+    transform-origin: bottom center;
+}
 
-        .petals {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.flower-container.active .flower-svg {
+    animation: flowerGrow 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+               flowerSway 4s ease-in-out infinite alternate 1.8s;
+}
 
-        .petals .petal {
-            position: absolute;
-            width: 30px;
-            height: 85px;
-            background: linear-gradient(to top, #f39c12, #f1c40f, #ffeb3b);
-            border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
-            transform-origin: bottom center;
-            transform: rotate(var(--deg)) translateY(-40px);
-            box-shadow: 0 0 12px rgba(241, 196, 15, 0.5);
-            top: auto;
-            left: auto;
-            opacity: 1;
-            animation: none;
-        }
+@keyframes flowerGrow {
+    0% {
+        transform: scale(0) translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
 
-        .flower-stem {
-            width: 14px;
-            height: 190px;
-            background: linear-gradient(to right, #2e7d32, #4caf50, #1b5e20);
-            border-radius: 6px;
-            position: relative;
-            margin-top: -10px;
-            z-index: 1;
-        }
-
-        .flower-leaf {
-            position: absolute;
-            width: 55px;
-            height: 28px;
-            background: linear-gradient(to right, #388e3c, #66bb6a);
-            top: 60px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        .leaf-left {
-            left: -50px;
-            transform: rotate(-25deg);
-            border-radius: 0 100px 0 100px;
-        }
-
-        .leaf-right {
-            right: -50px;
-            transform: rotate(25deg);
-            border-radius: 100px 0 100px 0;
-            top: 105px;
-        }
-
-        @keyframes flowerGrow {
-            0% {
-                transform: scale(0) translateY(100px);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1) translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes flowerSway {
-            0% {
-                transform: rotate(-4deg);
-            }
-            100% {
-                transform: rotate(4deg);
-            }
-        }
+@keyframes flowerSway {
+    0% {
+        transform: rotate(-3deg);
+    }
+    100% {
+        transform: rotate(3deg);
+    }
+}
     </style>
 </head>
 <body>
@@ -939,33 +880,61 @@ Con todo mi amor, siempre tuyo
                 </button>
 
                 <div id="flowerContainer" class="flower-container hidden">
-                    <div class="flower-wrapper">
-                        <!-- Cabeza de la flor -->
-                        <div class="flower-head">
-                            <div class="flower-center"></div>
-                            <div class="petals">
-                                <div class="petal" style="--deg: 0deg;"></div>
-                                <div class="petal" style="--deg: 30deg;"></div>
-                                <div class="petal" style="--deg: 60deg;"></div>
-                                <div class="petal" style="--deg: 90deg;"></div>
-                                <div class="petal" style="--deg: 120deg;"></div>
-                                <div class="petal" style="--deg: 150deg;"></div>
-                                <div class="petal" style="--deg: 180deg;"></div>
-                                <div class="petal" style="--deg: 210deg;"></div>
-                                <div class="petal" style="--deg: 240deg;"></div>
-                                <div class="petal" style="--deg: 270deg;"></div>
-                                <div class="petal" style="--deg: 300deg;"></div>
-                                <div class="petal" style="--deg: 330deg;"></div>
-                            </div>
-                        </div>
-                        <!-- Tallo y Hojas -->
-                        <div class="flower-stem">
-                            <div class="flower-leaf leaf-left"></div>
-                            <div class="flower-leaf leaf-right"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- SVG QUE SUSTITUYE A LA FLOR EN CSS -->
+    <svg class="flower-svg" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <!-- Degradado pétalos -->
+            <linearGradient id="petalGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#f39c12"/>
+                <stop offset="60%" stop-color="#f1c40f"/>
+                <stop offset="100%" stop-color="#ffeb3b"/>
+            </linearGradient>
+
+            <!-- Degradado centro -->
+            <radialGradient id="centerGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#5c3a21"/>
+                <stop offset="70%" stop-color="#3a2211"/>
+                <stop offset="100%" stop-color="#241408"/>
+            </radialGradient>
+
+            <!-- Degradado tallo -->
+            <linearGradient id="stemGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#2e7d32"/>
+                <stop offset="50%" stop-color="#4caf50"/>
+                <stop offset="100%" stop-color="#1b5e20"/>
+            </linearGradient>
+
+            <!-- Molde de un Pétalo -->
+            <path id="singlePetal" d="M 100 100 C 85 60, 90 20, 100 10 C 110 20, 115 60, 100 100 Z" fill="url(#petalGrad)" filter="drop-shadow(0px 2px 4px rgba(0,0,0,0.15))"/>
+        </defs>
+
+        <!-- TALLO -->
+        <rect x="94" y="100" width="12" height="180" rx="6" fill="url(#stemGrad)" />
+
+        <!-- HOJAS -->
+        <path d="M 94 200 Q 50 190 40 170 Q 70 170 94 185 Z" fill="#388e3c" />
+        <path d="M 106 220 Q 150 210 160 190 Q 130 190 106 205 Z" fill="#388e3c" />
+
+        <!-- PÉTALOS ROTADOS EN EL EJE (100, 100) -->
+        <g id="allPetals">
+            <use href="#singlePetal" transform="rotate(0, 100, 100)" />
+            <use href="#singlePetal" transform="rotate(30, 100, 100)" />
+            <use href="#singlePetal" transform="rotate(60, 100, 100)" />
+            <use href="#singlePetal" transform="rotate(90, 100, 100)" />
+            <use href="#singlePetal" transform="rotate(120, 100, 100)" />
+            <use href="#singlePetal" transform="rotate(150, 100, 100)" />
+            <use href="#singlePetal" transform="rotate(180, 100, 100)" />
+            <use href="#singlePetal" transform="rotate(210, 100, 100)" />
+            <use href="#singlePetal" transform="rotate(240, 100, 100)" />
+            <use href="#singlePetal" transform="rotate(270, 100, 100)" />
+            <use href="#singlePetal" transform="rotate(300, 100, 100)" />
+            <use href="#singlePetal" transform="rotate(330, 100, 100)" />
+        </g>
+
+        <!-- CENTRO MARRÓN (Fijado exactamente en X=100, Y=100) -->
+        <circle cx="100" cy="100" r="38" fill="url(#centerGrad)" stroke="#8b5a2b" stroke-width="2" stroke-dasharray="4,2" />
+    </svg>
+</div>
 
             <!-- CAJA PRINCIPAL -->
             <div class="yellow-accent-box">
